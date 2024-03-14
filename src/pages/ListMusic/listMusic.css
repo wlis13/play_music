@@ -1,0 +1,33 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  color: white;
+}
+
+.container_manager_list_music {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgb(71, 71, 71);
+}
+
+.container_manager_list_music section {
+  position: relative;
+  width: 175px;
+  text-align: center;
+  padding: 5px;
+}
+
+.container_manager_list_music img {
+  width: 100%;
+  height: 70%;
+}
+
+#icon_aside {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+}
