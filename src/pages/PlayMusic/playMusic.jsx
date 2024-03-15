@@ -6,13 +6,14 @@ import like from "./image/not_like.png";
 import next from "./image/next.png";
 import prev from "./image/prev.png";
 import play from "./image/pause.png";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
 
 function PlayMusic() {
 
   const { clickedMusic, musics } = useContext(MyContext);
+  const audioRef = useRef(null);
 
   const [isPlay, setIsPlay] = useState(false);
   const listIcons = [
@@ -87,9 +88,15 @@ function PlayMusic() {
   }
 
   function handleTimeUpdate({ target }) {
-    const { currentTime, duration } = target;
-    setCurrentTime(currentTime);
+    const { duration } = target;
+    setCurrentTime(audioRef.current.currentTime);
     setTotalTime(duration);
+  }
+
+  function handleTimeChange({ target }) {
+    const { value } = target;
+    setCurrentTime(value);
+    audioRef.current.currentTime = value;
   }
 
   function formatterTime(time_seconds) {
@@ -113,7 +120,7 @@ function PlayMusic() {
           min={0}
           max={totalTime}
           value={currentTime}
-          onChange={(event) => { setCurrentTime(event.target.value) }}
+          onChange={handleTimeChange}
         />
         <p>{formatterTime(Math.floor(totalTime))}</p>
       </div>
@@ -124,12 +131,21 @@ function PlayMusic() {
     const audio = document.getElementById("audio");
     if (audio) {
       if (isPlay) {
-        audio.play();
+        audioRef.current.play();
       } else {
-        audio.pause()
+        audioRef.current.pause();
+      }
+      if (currentTime === totalTime) {
+        if (musicIndex < musics.length - 1) {
+          setMusicIndex(musicIndex + 1);
+          audio.play()
+        } else {
+          setMusicIndex(0);
+          audio.play()
+        }
       }
     }
-  }, [isPlay])
+  }, [currentTime, isPlay, musicIndex, musics.length, totalTime])
 
   return (
     <div className="container_manager_play_music">
@@ -176,6 +192,7 @@ function PlayMusic() {
                 autoPlay={isPlay}
                 id="audio"
                 src={musics[musicIndex].music}
+                ref={audioRef}
                 onTimeUpdate={handleTimeUpdate}
               />
             </div>
