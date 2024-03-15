@@ -24,6 +24,7 @@ function Provider({ children }) {
   }, [])
 
   const providerValue = {
+    fetchMusics,
     musics,
     clickedMusic,
     setClickedMusic

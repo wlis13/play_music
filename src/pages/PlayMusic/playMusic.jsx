@@ -1,4 +1,6 @@
 import "./playMusic.css";
+import spotyfree from "./image/spotyfree_logo.png";
+import returnIcon from "./image/arrow_for_down_white.png";
 import pause from "./image/play.png";
 import like from "./image/not_like.png";
 import next from "./image/next.png";
@@ -6,12 +8,13 @@ import prev from "./image/prev.png";
 import play from "./image/pause.png";
 import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/context";
+import ShowLoad from "../../components/ShowLoad/showLoad";
 
 function PlayMusic() {
 
   const { clickedMusic, musics } = useContext(MyContext);
 
-  const [isPlay, setIsPlay] = useState(true);
+  const [isPlay, setIsPlay] = useState(false);
   const listIcons = [
     { name: "like", default: like },
     { name: "prev", default: prev },
@@ -60,11 +63,15 @@ function PlayMusic() {
       setPlayList(true);
       if (handleIndexNext(musicIndex)) {
         setMusicIndex(musicIndex + 1)
+      } else {
+        setMusicIndex(0)
       }
     } else if (alt === "prev") {
       setPlayList(true);
       if (handleIndexPrev(musicIndex)) {
         setMusicIndex(musicIndex - 1)
+      } else {
+        setMusicIndex(musics.length - 1)
       }
     }
   }
@@ -115,10 +122,12 @@ function PlayMusic() {
 
   useEffect(() => {
     const audio = document.getElementById("audio");
-    if (isPlay) {
-      audio.play();
-    } else {
-      audio.pause()
+    if (audio) {
+      if (isPlay) {
+        audio.play();
+      } else {
+        audio.pause()
+      }
     }
   }, [isPlay])
 
@@ -127,6 +136,11 @@ function PlayMusic() {
       {
         Object.keys(clickedMusic).length > 0 && playList === false ?
           <div className="container_object_music">
+            <header className="container_header_play_music">
+              <img src={returnIcon} alt="voltar para a página anterior" />
+              <p>{(musics[musicIndex].description).substring(0, 30)}</p>
+              <img src={spotyfree} alt="spoty free" />
+            </header>
             <img
               id="image_play_music"
               src={clickedMusic.image}
@@ -142,21 +156,30 @@ function PlayMusic() {
             />
           </div>
           :
-          <div className="container_object_music">
-            <img
-              id="image_play_music"
-              src={musics[musicIndex].image}
-              alt={musics[musicIndex].title}
-            />
-            {showTimeMusic()}
-            <h2>{musics[musicIndex].title}</h2>
-            <audio
-              autoPlay={isPlay}
-              id="audio"
-              src={musics[musicIndex].music}
-              onTimeUpdate={handleTimeUpdate}
-            />
-          </div>
+          musics.length > 0 ?
+            <div className="container_object_music">
+              <header className="container_header_play_music">
+                <img src={returnIcon} alt="voltar para a página anterior" />
+                <p>{
+                  (musics[musicIndex].description).substring(0, 30)
+                }</p>
+                <img src={spotyfree} alt="spoty free" />
+              </header>
+              <img
+                id="image_play_music"
+                src={musics[musicIndex].image}
+                alt={musics[musicIndex].title}
+              />
+              {showTimeMusic()}
+              <h2>{musics[musicIndex].title}</h2>
+              <audio
+                autoPlay={isPlay}
+                id="audio"
+                src={musics[musicIndex].music}
+                onTimeUpdate={handleTimeUpdate}
+              />
+            </div>
+            : <ShowLoad />
       }
       <div className="container_menu_play">
         {
