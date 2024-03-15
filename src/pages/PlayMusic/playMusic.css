@@ -15,9 +15,8 @@
   width: 30px;
 }
 
-.container_header_play_music p {
+.container_text_description p {
   overflow: hidden;
-  margin: 0px 15px;
 }
 
 .container_object_music {
