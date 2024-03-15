@@ -13,10 +13,14 @@ import Play from "./Play";
 
 function PlayMusic() {
 
-  const { clickedMusic, setClickedMusic, musics } = useContext(MyContext);
+  const {
+    clickedMusic,
+    setClickedMusic,
+    musics,
+  } = useContext(MyContext);
   const audioRef = useRef(null);
 
-  const [isPlay, setIsPlay] = useState(false);
+  const [isPlay, setIsPlay] = useState(true);
   const listIcons = [
     { name: "like", default: like },
     { name: "prev", default: prev },
@@ -93,7 +97,7 @@ function PlayMusic() {
   function handleAudioValue({ target }) {
     const { duration, currentTime } = target;
     setTotalTime(duration);
-    setCurrentTime(currentTime)
+    setCurrentTime(currentTime);
   }
 
   function formatterTime(time_seconds) {
@@ -127,7 +131,6 @@ function PlayMusic() {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
-      audio.play();
       if (currentTime === totalTime) {
         if (callJump === 1000) {
           setCallJump(1);
@@ -144,7 +147,8 @@ function PlayMusic() {
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime])
+  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime]);
+
   return (
     <div className="container_manager_play_music">
       {
