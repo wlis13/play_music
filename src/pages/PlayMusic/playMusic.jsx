@@ -127,6 +127,7 @@ function PlayMusic() {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
+      audio.play();
       if (currentTime === totalTime) {
         if (callJump === 1000) {
           setCallJump(1);
