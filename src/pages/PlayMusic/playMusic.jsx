@@ -21,6 +21,8 @@ function PlayMusic() {
 
   const [musicIndex, setMusicIndex] = useState(0);
   const [playList, setPlayList] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -77,6 +79,38 @@ function PlayMusic() {
     }
   }
 
+  function handleTimeUpdate({ target }) {
+    const { currentTime, duration } = target;
+    setCurrentTime(currentTime);
+    setTotalTime(duration);
+  }
+
+  function formatterTime(time_seconds) {
+    let minutes = Math.floor(time_seconds / 60);
+    let seconds = Math.floor(time_seconds % 60);
+    const formattedTime = `${minutes}:${seconds < 10 ? "0" : ''}${seconds}`;
+    if (time_seconds) {
+      return formattedTime;
+    }
+  }
+
+  function showTimeMusic() {
+    return (
+      <div className="container_time_music">
+        <p>{formatterTime(currentTime.toFixed(0))}</p>
+        <input
+          id="input_range"
+          type="range"
+          min={0}
+          max={totalTime}
+          value={currentTime}
+          onChange={(event) => { setCurrentTime(event.target.value) }}
+        />
+        <p>{formatterTime((totalTime).toFixed(0))}</p>
+      </div>
+    )
+  }
+
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (isPlay) {
@@ -96,6 +130,7 @@ function PlayMusic() {
               src={clickedMusic.image}
               alt={clickedMusic.title}
             />
+            {showTimeMusic()}
             <h2>{clickedMusic.title}</h2>
             <audio id="audio" src={clickedMusic.music} />
           </div>
@@ -106,8 +141,14 @@ function PlayMusic() {
               src={musics[musicIndex].image}
               alt={musics[musicIndex].title}
             />
+            {showTimeMusic()}
             <h2>{musics[musicIndex].title}</h2>
-            <audio autoPlay={isPlay} id="audio" src={musics[musicIndex].music} />
+            <audio
+              autoPlay={isPlay}
+              id="audio"
+              src={musics[musicIndex].music}
+              onTimeUpdate={handleTimeUpdate}
+            />
           </div>
       }
       <div className="container_menu_play">

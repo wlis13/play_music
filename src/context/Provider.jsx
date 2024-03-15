@@ -8,7 +8,7 @@ function Provider({ children }) {
   const [clickedMusic, setClickedMusic] = useState({});
 
   async function fetchMusics() {
-    const url = "https://play-music-service.vercel.app/all_musics";
+    const url = "http://localhost:3001/all_musics";
     const promise = await fetch(url, {
       method: "GET",
       headers: {
