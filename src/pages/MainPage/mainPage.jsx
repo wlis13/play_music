@@ -5,8 +5,8 @@ import ListMusic from "../ListMusic/listMusic";
 function MainPage() {
   return (
     <div>
-      <Header />
       <ListMusic />
+      <Header />
       <Footer />
     </div>
   );

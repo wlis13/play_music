@@ -1,0 +1,33 @@
+.container_manager_play_music {
+  background-color: rgb(71, 71, 71);
+}
+
+.container_object_music {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#image_play_music {
+  width: 80%;
+  height: 70%;
+}
+
+.container_object_music h2 {
+  margin: 10px 0px;
+}
+
+.container_menu_play {
+  background-color: rgb(71, 71, 71);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border: 1px solid rgb(231, 231, 231);
+}
+
+.container_menu_play img {
+  width: 10%;
+  cursor: pointer;
+}

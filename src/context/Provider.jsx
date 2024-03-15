@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 function Provider({ children }) {
 
   const [musics, setMusics] = useState([]);
+  const [clickedMusic, setClickedMusic] = useState({});
 
   async function fetchMusics() {
     const url = "https://play-music-service.vercel.app/all_musics";
@@ -23,7 +24,9 @@ function Provider({ children }) {
   }, [])
 
   const providerValue = {
-    musics
+    musics,
+    clickedMusic,
+    setClickedMusic
   }
 
   return (
