@@ -11,8 +11,8 @@ function ListMusic() {
 
   const { musics, setClickedMusic } = useContext(MyContext);
 
-  function handleRoute(music) {
-    setClickedMusic(music);
+  function handleRoute(id) {
+    setClickedMusic(musics.findIndex((music) => music._id === id));
     history.push("/play")
   }
 
@@ -21,7 +21,7 @@ function ListMusic() {
       {musics.length > 0 ?
         musics.map((music) => (
           <section
-            onClick={() => { handleRoute(music) }}
+            onClick={() => { handleRoute(music._id) }}
             key={music.title}>
             <img id="icon_aside" src={iconFavicon} alt="apotyfree" />
             <img src={music.image} alt={music.title} />

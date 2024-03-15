@@ -9,10 +9,11 @@ import play from "./image/pause.png";
 import { useContext, useEffect, useRef, useState } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
+import Play from "./Play";
 
 function PlayMusic() {
 
-  const { clickedMusic, musics } = useContext(MyContext);
+  const { clickedMusic, setClickedMusic, musics } = useContext(MyContext);
   const audioRef = useRef(null);
 
   const [isPlay, setIsPlay] = useState(false);
@@ -23,10 +24,9 @@ function PlayMusic() {
     { name: "next", default: next },
   ];
 
-  const [musicIndex, setMusicIndex] = useState(0);
-  const [playList, setPlayList] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
+  const [callJump, setCallJump] = useState(1);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -61,18 +61,16 @@ function PlayMusic() {
 
   function handleNextAndPrev(alt) {
     if (alt === "next") {
-      setPlayList(true);
-      if (handleIndexNext(musicIndex)) {
-        setMusicIndex(musicIndex + 1)
+      if (handleIndexNext(clickedMusic)) {
+        setClickedMusic(clickedMusic + 1)
       } else {
-        setMusicIndex(0)
+        setClickedMusic(0)
       }
     } else if (alt === "prev") {
-      setPlayList(true);
-      if (handleIndexPrev(musicIndex)) {
-        setMusicIndex(musicIndex - 1)
+      if (handleIndexPrev(clickedMusic)) {
+        setClickedMusic(clickedMusic - 1)
       } else {
-        setMusicIndex(musics.length - 1)
+        setClickedMusic(musics.length - 1)
       }
     }
   }
@@ -87,16 +85,15 @@ function PlayMusic() {
     }
   }
 
-  function handleTimeUpdate({ target }) {
-    const { duration } = target;
-    setCurrentTime(audioRef.current.currentTime);
-    setTotalTime(duration);
+  function handleInputValue({ target }) {
+    const { value } = target;
+    audioRef.current.currentTime = value;
   }
 
-  function handleTimeChange({ target }) {
-    const { value } = target;
-    setCurrentTime(value);
-    audioRef.current.currentTime = value;
+  function handleAudioValue({ target }) {
+    const { duration, currentTime } = target;
+    setTotalTime(duration);
+    setCurrentTime(currentTime)
   }
 
   function formatterTime(time_seconds) {
@@ -118,9 +115,9 @@ function PlayMusic() {
           id="input_range"
           type="range"
           min={0}
-          max={totalTime}
+          max={totalTime && totalTime}
           value={currentTime}
-          onChange={handleTimeChange}
+          onChange={handleInputValue}
         />
         <p>{formatterTime(Math.floor(totalTime))}</p>
       </div>
@@ -130,73 +127,37 @@ function PlayMusic() {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
-      if (isPlay) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
-      }
       if (currentTime === totalTime) {
-        if (musicIndex < musics.length - 1) {
-          setMusicIndex(musicIndex + 1);
-          audio.play()
-        } else {
-          setMusicIndex(0);
-          audio.play()
+        if (callJump === 1000) {
+          setCallJump(1);
+        }
+        setCallJump(callJump + 1);
+        if (callJump % 2 !== 0) {
+          if (clickedMusic === musics.length - 1) {
+            setClickedMusic(0);
+            audio.play();
+          } else {
+            setClickedMusic(clickedMusic + 1)
+            audio.play();
+          }
         }
       }
     }
-  }, [currentTime, isPlay, musicIndex, musics.length, totalTime])
-
+  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime])
   return (
     <div className="container_manager_play_music">
       {
-        Object.keys(clickedMusic).length > 0 && playList === false ?
-          <div className="container_object_music">
-            <header className="container_header_play_music">
-              <img src={returnIcon} alt="voltar para a página anterior" />
-              <p>{(musics[musicIndex].description).substring(0, 30)}</p>
-              <img src={spotyfree} alt="spoty free" />
-            </header>
-            <img
-              id="image_play_music"
-              src={clickedMusic.image}
-              alt={clickedMusic.title}
-            />
-            {showTimeMusic()}
-            <h2>{clickedMusic.title}</h2>
-            <audio
-              autoPlay={isPlay}
-              id="audio"
-              src={clickedMusic.music}
-              onTimeUpdate={handleTimeUpdate}
-            />
-          </div>
-          :
-          musics.length > 0 ?
-            <div className="container_object_music">
-              <header className="container_header_play_music">
-                <img src={returnIcon} alt="voltar para a página anterior" />
-                <p>{
-                  (musics[musicIndex].description).substring(0, 30)
-                }</p>
-                <img src={spotyfree} alt="spoty free" />
-              </header>
-              <img
-                id="image_play_music"
-                src={musics[musicIndex].image}
-                alt={musics[musicIndex].title}
-              />
-              {showTimeMusic()}
-              <h2>{musics[musicIndex].title}</h2>
-              <audio
-                autoPlay={isPlay}
-                id="audio"
-                src={musics[musicIndex].music}
-                ref={audioRef}
-                onTimeUpdate={handleTimeUpdate}
-              />
-            </div>
-            : <ShowLoad />
+        musics.length > 0 ?
+          <Play
+            returnIcon={returnIcon}
+            spotyfree={spotyfree}
+            clickedMusic={musics[clickedMusic]}
+            handleAudioValue={handleAudioValue}
+            showTimeMusic={showTimeMusic}
+            isPlay={isPlay}
+            audioRef={audioRef}
+          />
+          : <ShowLoad />
       }
       <div className="container_menu_play">
         {
