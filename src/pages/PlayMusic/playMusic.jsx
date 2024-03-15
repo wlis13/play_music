@@ -11,7 +11,7 @@ function PlayMusic() {
 
   const { clickedMusic, musics } = useContext(MyContext);
 
-  const [isPlay, setIsPlay] = useState(false);
+  const [isPlay, setIsPlay] = useState(true);
   const listIcons = [
     { name: "like", default: like },
     { name: "prev", default: prev },
@@ -88,16 +88,18 @@ function PlayMusic() {
   function formatterTime(time_seconds) {
     let minutes = Math.floor(time_seconds / 60);
     let seconds = Math.floor(time_seconds % 60);
-    const formattedTime = `${minutes}:${seconds < 10 ? "0" : ''}${seconds}`;
     if (time_seconds) {
+      const formattedTime = `${minutes}:${seconds < 10 ? "0" : ''}${seconds}`;
       return formattedTime;
+    } else {
+      return "0:00"
     }
   }
 
   function showTimeMusic() {
     return (
       <div className="container_time_music">
-        <p>{formatterTime(currentTime.toFixed(0))}</p>
+        <p>{formatterTime(Math.floor(currentTime))}</p>
         <input
           id="input_range"
           type="range"
@@ -106,7 +108,7 @@ function PlayMusic() {
           value={currentTime}
           onChange={(event) => { setCurrentTime(event.target.value) }}
         />
-        <p>{formatterTime((totalTime).toFixed(0))}</p>
+        <p>{formatterTime(Math.floor(totalTime))}</p>
       </div>
     )
   }
@@ -132,7 +134,12 @@ function PlayMusic() {
             />
             {showTimeMusic()}
             <h2>{clickedMusic.title}</h2>
-            <audio id="audio" src={clickedMusic.music} />
+            <audio
+              autoPlay={isPlay}
+              id="audio"
+              src={clickedMusic.music}
+              onTimeUpdate={handleTimeUpdate}
+            />
           </div>
           :
           <div className="container_object_music">
