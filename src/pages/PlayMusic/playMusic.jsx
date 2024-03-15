@@ -26,6 +26,7 @@ function PlayMusic() {
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
+    { name: "spotyfree", default: spotyfree },
   ];
 
   const [currentTime, setCurrentTime] = useState(0);
@@ -175,9 +176,9 @@ function PlayMusic() {
             />
           ))
         }
-        <h1>@</h1>
       </div>
     </div>
   );
 }
+
 export default PlayMusic;
