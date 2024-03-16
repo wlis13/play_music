@@ -132,18 +132,20 @@ function PlayMusic() {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
-      if (currentTime === totalTime) {
-        if (callJump === 1000) {
-          setCallJump(1);
-        }
-        setCallJump(callJump + 1);
-        if (callJump % 2 !== 0) {
-          if (clickedMusic === musics.length - 1) {
-            setClickedMusic(0);
-            audio.play();
-          } else {
-            setClickedMusic(clickedMusic + 1)
-            audio.play();
+      if (totalTime > 0) {
+        if (currentTime === totalTime) {
+          if (callJump === 1000) {
+            setCallJump(1);
+          }
+          setCallJump(callJump + 1);
+          if (callJump % 2 !== 0) {
+            if (clickedMusic === musics.length - 1) {
+              setClickedMusic(0);
+              audio.play();
+            } else {
+              setClickedMusic(clickedMusic + 1)
+              audio.play();
+            }
           }
         }
       }
