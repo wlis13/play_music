@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 
 function Play({
   returnIcon,
@@ -9,10 +10,16 @@ function Play({
   audioRef,
 }) {
 
+  const history = useHistory();
+
+  function handleGoBack() {
+    history.goBack();
+  }
+
   return (
     <div className="container_object_music">
       <header className="container_header_play_music">
-        <img src={returnIcon} alt="voltar para a página anterior" />
+        <img onClick={handleGoBack} src={returnIcon} alt="voltar para a página anterior" />
         <div id="container_text_description">
           <span id="text_description">{clickedMusic.description}</span>
         </div>
