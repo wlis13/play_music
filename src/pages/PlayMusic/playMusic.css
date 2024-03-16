@@ -15,9 +15,30 @@
   width: 30px;
 }
 
-.container_text_description p {
+#container_text_description {
+  width: 250px;
   overflow: hidden;
+  margin-left: 20px;
 }
+
+#text_description {
+  position: relative;
+  white-space: nowrap;
+  left: 250px;
+  animation: moveLeft 20s linear infinite;
+  animation-delay: 2s;
+}
+
+@keyframes moveLeft {
+  0% {
+    left: 250px
+  }
+
+  100% {
+    left: -1600px
+  }
+}
+
 
 .container_object_music {
   display: flex;
