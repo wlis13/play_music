@@ -139,11 +139,11 @@ function PlayMusic() {
           }
           setCallJump(callJump + 1);
           if (callJump % 2 !== 0) {
-            if (clickedMusic === musics.length - 1) {
-              setClickedMusic(0);
+            if (clickedMusic < musics.length - 1) {
+              setClickedMusic(clickedMusic + 1);
               audio.play();
             } else {
-              setClickedMusic(clickedMusic + 1)
+              setClickedMusic(0)
               audio.play();
             }
           }
