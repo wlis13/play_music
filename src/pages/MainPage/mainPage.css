@@ -1,7 +1,10 @@
 * {
   font-family: sans-serif;
+  margin: 0;
+  color: white;
 }
 
 .container_manager_main_page {
   background-color: rgb(71, 71, 71);
+  height: 100%;
 }
