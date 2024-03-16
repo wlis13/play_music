@@ -17,10 +17,11 @@ function PlayMusic() {
     clickedMusic,
     setClickedMusic,
     musics,
+    isPlay,
+    setIsPlay
   } = useContext(MyContext);
   const audioRef = useRef(null);
 
-  const [isPlay, setIsPlay] = useState(true);
   const listIcons = [
     { name: "like", default: like },
     { name: "prev", default: prev },

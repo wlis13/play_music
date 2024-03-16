@@ -6,6 +6,7 @@ function Provider({ children }) {
 
   const [musics, setMusics] = useState([]);
   const [clickedMusic, setClickedMusic] = useState(0);
+  const [isPlay, setIsPlay] = useState(true);
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -28,6 +29,8 @@ function Provider({ children }) {
     musics,
     clickedMusic,
     setClickedMusic,
+    isPlay,
+    setIsPlay
   }
 
   return (
