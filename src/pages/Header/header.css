@@ -3,8 +3,8 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0px;
-  border: 1px solid rgb(231, 231, 231);
+  padding: 20px 0px;
+  border-top: 1px solid rgb(231, 231, 231);
 }
 
 .container_manager_header img {

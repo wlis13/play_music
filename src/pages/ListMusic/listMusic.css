@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
   background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
-  padding: 20px 0px;
 }
 
 .container_manager_list_music section {
@@ -26,10 +25,10 @@
 
 .icon_aside {
   position: absolute;
-  top: 5px;
-  left: 10px;
-  width: 10px;
-  height: 10px;
+  top: 12px;
+  left: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .title_and_category h2 {
