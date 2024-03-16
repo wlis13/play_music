@@ -14,9 +14,11 @@
 
 .container_manager_list_music section {
   position: relative;
-  width: 175px;
+  width: 160px;
   text-align: center;
-  padding: 5px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid red;
 }
 
 .container_manager_list_music img {
@@ -30,4 +32,13 @@
   left: 10px;
   width: 30px;
   height: 30px;
+}
+
+.title_and_category h2 {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+
+.title_and_category h3 {
+  margin-bottom: 10px;
 }

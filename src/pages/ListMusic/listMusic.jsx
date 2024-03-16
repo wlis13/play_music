@@ -25,7 +25,7 @@ function ListMusic() {
             key={music.title}>
             <img id="icon_aside" src={iconFavicon} alt="apotyfree" />
             <img src={music.image} alt={music.title} />
-            <aside>
+            <aside className="title_and_category">
               <h2>{music.title}</h2>
               <h3>{music.category}</h3>
             </aside>
