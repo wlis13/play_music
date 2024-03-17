@@ -4,6 +4,7 @@ import "./mainPage.css";
 import Audio from "../../components/Audio/audio";
 import { useContext } from "react";
 import MyContext from "../../context/context";
+import Start from "../../components/Start/start";
 
 function MainPage() {
 
@@ -11,15 +12,17 @@ function MainPage() {
     isPlay,
     audioRef,
     clickedMusic,
-    handleAudioValue
+    handleAudioValue,
+    musics,
   } = useContext(MyContext);
 
   return (
     <div className="container_manager_main_page">
       <ListMusic />
+      <Start />
       <Header />
       <Audio
-        clickedMusic={clickedMusic}
+        clickedMusic={musics[clickedMusic]}
         handleAudioValue={handleAudioValue}
         isPlay={isPlay}
         audioRef={audioRef}
