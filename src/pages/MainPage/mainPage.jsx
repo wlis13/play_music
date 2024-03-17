@@ -2,7 +2,7 @@ import Header from "../Header/header";
 import ListMusic from "../../components/ListMusic/listMusic";
 import "./mainPage.css";
 import Audio from "../../components/Audio/audio";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import MyContext from "../../context/context";
 import Start from "../../components/Start/start";
 
@@ -14,7 +14,15 @@ function MainPage() {
     clickedMusic,
     handleAudioValue,
     musics,
+    saveTimeMusic,
   } = useContext(MyContext);
+
+  useEffect(() => {
+    const audio = document.getElementById("audio");
+    if (audio) {
+      audio.currentTime = saveTimeMusic;
+    }
+  }, [saveTimeMusic])
 
   return (
     <div className="container_manager_main_page">

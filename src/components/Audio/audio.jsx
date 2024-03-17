@@ -18,7 +18,7 @@ Audio.propTypes = {
   audioRef: PropType.string.isRequired,
   isPlay: PropType.bool.isRequired,
   clickedMusic: PropType.object.isRequired,
-  handleAudioValue: PropType.string.isRequired,
+  handleAudioValue: PropType.func.isRequired,
 }
 
 export default Audio;

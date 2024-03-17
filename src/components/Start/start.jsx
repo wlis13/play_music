@@ -11,8 +11,14 @@ import MyContext from "../../context/context";
 
 function Start() {
 
-  const { isPlay, musics, clickedMusic, setIsPlay,
-    fetchUpdateLike, setClickedMusic } = useContext(MyContext);
+  const {
+    isPlay,
+    musics,
+    clickedMusic,
+    setIsPlay,
+    fetchUpdateLike,
+    setClickedMusic
+  } = useContext(MyContext);
 
   const addLike = useRef(musics.lenght > 0 && musics[clickedMusic].like);
 

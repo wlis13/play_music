@@ -44,6 +44,7 @@ function Provider({ children }) {
     const { duration, currentTime } = target;
     setTotalTime(duration);
     setCurrentTime(currentTime);
+    return currentTime;
   }
 
   useEffect(() => {
