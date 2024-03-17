@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MyContext from "./context";
 import PropTypes from "prop-types";
 
@@ -12,6 +12,9 @@ function Provider({ children }) {
   const [saveTimeMusic, setSaveTimeMusic] = useState(0);
   const [currentPath, setCurrentPath] = useState("");
   const [audio, setAudio] = useState();
+  const audioRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -37,6 +40,12 @@ function Provider({ children }) {
     fetchMusics();
   }
 
+  function handleAudioValue({ target }) {
+    const { duration, currentTime } = target;
+    setTotalTime(duration);
+    setCurrentTime(currentTime);
+  }
+
   useEffect(() => {
     fetchMusics()
   }, [])
@@ -58,7 +67,11 @@ function Provider({ children }) {
     currentPath,
     setCurrentPath,
     audio,
-    setAudio
+    setAudio,
+    audioRef,
+    currentTime,
+    totalTime,
+    handleAudioValue
   }
 
   return (

@@ -1,16 +1,11 @@
 import "./playMusic.css";
 import spotyfree from "./image/spotyfree_logo.png";
 import returnIcon from "./image/arrow_for_down_white.png";
-import pause from "./image/play.png";
-import notLike from "./image/not_like.png";
-import like from "./image/like.png";
-import next from "./image/next.png";
-import prev from "./image/prev.png";
-import play from "./image/pause.png";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
 import Play from "./Play";
+import Start from "../../components/Start/start";
 
 function PlayMusic() {
 
@@ -19,103 +14,19 @@ function PlayMusic() {
     setClickedMusic,
     musics,
     isPlay,
-    setIsPlay,
-    fetchUpdateLike,
     setSaveTimeMusic,
     setCurrentPath,
-    audio,
-    setAudio
+    audioRef,
+    handleAudioValue,
+    currentTime,
+    totalTime
   } = useContext(MyContext);
-  const audioRef = useRef(null);
 
-  const listIcons = [
-    { name: "notLike", default: notLike },
-    { name: "like", default: like },
-    { name: "prev", default: prev },
-    { name: "playEndpause", default: isPlay ? play : pause },
-    { name: "next", default: next },
-    { name: "spotyfree", default: spotyfree },
-  ];
-
-  const [currentTime, setCurrentTime] = useState(0);
-  const [totalTime, setTotalTime] = useState(0);
   const [callJump, setCallJump] = useState(1);
-  const addLike = useRef(musics[clickedMusic].like);
-
-
-  function handlePlayAudio() {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause()
-    }
-  }
-
-
-  function handlePlay() {
-    setIsPlay(prev => !prev);
-    handlePlayAudio()
-  }
-
-  function handleIndexNext(index) {
-    if (index < musics.length - 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function handleIndexPrev(index) {
-    if (index > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function handleNextAndPrev(alt) {
-    if (alt === "next") {
-      if (handleIndexNext(clickedMusic)) {
-        setClickedMusic(clickedMusic + 1)
-      } else {
-        setClickedMusic(0)
-      }
-    } else if (alt === "prev") {
-      if (handleIndexPrev(clickedMusic)) {
-        setClickedMusic(clickedMusic - 1)
-      } else {
-        setClickedMusic(musics.length - 1)
-      }
-    }
-  }
-
-  function handleUpdateLike(music, liked) {
-    const updatedLike = { ...music, like: liked }
-    fetchUpdateLike(updatedLike);
-  }
-
-  function handleEvents({ target }) {
-    const { alt } = target;
-    if (alt === "playEndpause") {
-      handlePlay()
-    } else if (alt === "next" || alt === "prev") {
-      handleNextAndPrev(alt);
-      setIsPlay(true)
-    } else if (alt === "like" || alt === "notLike") {
-      addLike.current = !addLike.current;
-      handleUpdateLike(musics[clickedMusic], addLike.current);
-    }
-  }
 
   function handleInputValue({ target }) {
     const { value } = target;
     audioRef.current.currentTime = value;
-  }
-
-  function handleAudioValue({ target }) {
-    const { duration, currentTime } = target;
-    setTotalTime(duration);
-    setCurrentTime(currentTime);
   }
 
   function formatterTime(time_seconds) {
@@ -149,7 +60,6 @@ function PlayMusic() {
   useEffect(() => {
     setSaveTimeMusic(currentTime)
     const audio = document.getElementById("audio");
-    setAudio(audio)
     if (audio) {
       if (totalTime > 0) {
         if (currentTime === totalTime) {
@@ -169,7 +79,7 @@ function PlayMusic() {
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, setAudio, setClickedMusic, setSaveTimeMusic, totalTime]);
+  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, setSaveTimeMusic, totalTime]);
 
   useEffect(() => {
     setCurrentPath("play")
@@ -190,18 +100,7 @@ function PlayMusic() {
           />
           : <ShowLoad />
       }
-      <div className="container_menu_play">
-        {
-          listIcons.filter((item) => musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like").map((icon) => (
-            <img
-              src={icon.default}
-              alt={icon.name}
-              key={icon.name}
-              onClick={handleEvents}
-            />
-          ))
-        }
-      </div>
+      <Start />
     </div>
   );
 }

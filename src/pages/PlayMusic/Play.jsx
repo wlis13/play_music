@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import MyContext from "../../context/context";
+import Audio from "../../components/Audio/audio";
 
 function Play({
   returnIcon,
@@ -36,25 +37,24 @@ function Play({
       />
       {showTimeMusic()}
       <h2>{clickedMusic.title}</h2>
-      <audio
-        ref={audioRef}
-        autoPlay={isPlay}
-        id="audio"
-        src={clickedMusic.music}
-        onTimeUpdate={handleAudioValue}
+      <Audio
+        clickedMusic={clickedMusic}
+        handleAudioValue={handleAudioValue}
+        isPlay={isPlay}
+        audioRef={audioRef}
       />
     </div>
   );
 }
 
 Play.propTypes = {
-  returnIcon: PropTypes.object.isRequired,
+  returnIcon: PropTypes.string.isRequired,
   musics: PropTypes.array.isRequired,
-  clickedMusic: PropTypes.bool.isRequired,
+  clickedMusic: PropTypes.object.isRequired,
   handleAudioValue: PropTypes.func.isRequired,
   showTimeMusic: PropTypes.func.isRequired,
   isPlay: PropTypes.bool.isRequired,
-  audioRef: PropTypes.number.isRequired,
+  audioRef: PropTypes.object.isRequired,
 }
 
 export default Play;
