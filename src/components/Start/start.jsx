@@ -31,7 +31,6 @@ function Start() {
     }
   }
 
-
   function handlePlay() {
     setIsPlay(true)
     handlePlayAudio()
