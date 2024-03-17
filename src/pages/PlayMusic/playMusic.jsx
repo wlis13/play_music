@@ -2,7 +2,8 @@ import "./playMusic.css";
 import spotyfree from "./image/spotyfree_logo.png";
 import returnIcon from "./image/arrow_for_down_white.png";
 import pause from "./image/play.png";
-import like from "./image/not_like.png";
+import notLike from "./image/not_like.png";
+import like from "./image/like.png";
 import next from "./image/next.png";
 import prev from "./image/prev.png";
 import play from "./image/pause.png";
@@ -18,11 +19,13 @@ function PlayMusic() {
     setClickedMusic,
     musics,
     isPlay,
-    setIsPlay
+    setIsPlay,
+    fetchUpdateLike
   } = useContext(MyContext);
   const audioRef = useRef(null);
 
   const listIcons = [
+    { name: "notLike", default: notLike },
     { name: "like", default: like },
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
@@ -33,6 +36,7 @@ function PlayMusic() {
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [callJump, setCallJump] = useState(1);
+  const [addLike, setAddLike] = useState(false);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -81,6 +85,11 @@ function PlayMusic() {
     }
   }
 
+  function handleUpdateLike(music, liked) {
+    const updatedLike = { ...music, like: liked }
+    fetchUpdateLike(updatedLike);
+  }
+
   function handleEvents({ target }) {
     const { alt } = target;
     if (alt === "playEndpause") {
@@ -88,6 +97,9 @@ function PlayMusic() {
     } else if (alt === "next" || alt === "prev") {
       handleNextAndPrev(alt);
       setIsPlay(true)
+    } else if (alt === "like" || alt === "notLike") {
+      setAddLike(prev => !prev);
+      handleUpdateLike(musics[clickedMusic], addLike);
     }
   }
 
@@ -170,7 +182,7 @@ function PlayMusic() {
       }
       <div className="container_menu_play">
         {
-          listIcons.map((icon) => (
+          listIcons.filter((item) => !addLike ? item.name !== "notLike" : item.name !== "like").map((icon) => (
             <img
               src={icon.default}
               alt={icon.name}

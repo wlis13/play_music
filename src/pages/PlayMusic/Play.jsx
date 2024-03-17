@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import MyContext from "../../context/context";
 
 function Play({
   returnIcon,
@@ -12,8 +14,11 @@ function Play({
 
   const history = useHistory();
 
+  const { setPageLike } = useContext(MyContext);
+
   function handleGoBack() {
     history.goBack();
+    setPageLike(false);
   }
 
   return (

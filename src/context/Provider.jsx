@@ -7,6 +7,7 @@ function Provider({ children }) {
   const [musics, setMusics] = useState([]);
   const [clickedMusic, setClickedMusic] = useState(0);
   const [isPlay, setIsPlay] = useState(true);
+  const [pageLike, setPageLike] = useState(false);
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -20,6 +21,17 @@ function Provider({ children }) {
     setMusics(response);
   }
 
+  async function fetchUpdateLike(music) {
+    const urlUpdate = "https://playmusicservice.vercel.app/update_music";
+    await fetch(urlUpdate, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(music),
+    });
+  }
+
   useEffect(() => {
     fetchMusics()
   }, [])
@@ -30,7 +42,10 @@ function Provider({ children }) {
     clickedMusic,
     setClickedMusic,
     isPlay,
-    setIsPlay
+    setIsPlay,
+    pageLike,
+    setPageLike,
+    fetchUpdateLike
   }
 
   return (

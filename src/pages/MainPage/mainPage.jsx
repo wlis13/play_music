@@ -1,5 +1,5 @@
 import Header from "../Header/header";
-import ListMusic from "../ListMusic/listMusic";
+import ListMusic from "../../components/ListMusic/listMusic";
 import "./mainPage.css";
 
 function MainPage() {

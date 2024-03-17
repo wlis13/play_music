@@ -3,13 +3,16 @@ import searchIcon from "./images/search-white.png";
 import likeIcon from "./images/like.png";
 import notLikeIcon from "./images/not_like.png";
 import spotyfreeIcon from "./images/spotyfree_logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./header.css";
+import MyContext from "../../context/context";
 
 function Header() {
 
-  const history = useHistory()
+  const history = useHistory();
+
+  const { setPageLike } = useContext(MyContext);
 
   const [isLike, setIsLike] = useState(false);
 
@@ -21,6 +24,7 @@ function Header() {
   ]
 
   function handleLike() {
+    setPageLike(true);
     setIsLike(prev => !prev)
     history.push("/play_like")
   }
