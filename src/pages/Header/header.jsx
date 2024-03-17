@@ -3,7 +3,7 @@ import searchIcon from "./images/search-white.png";
 import likeIcon from "./images/like.png";
 import notLikeIcon from "./images/not_like.png";
 import spotyfreeIcon from "./images/spotyfree_logo.png";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom"
 import "./header.css";
 import MyContext from "../../context/context";
@@ -12,9 +12,7 @@ function Header() {
 
   const history = useHistory();
 
-  const { setPageLike } = useContext(MyContext);
-
-  const [isLike, setIsLike] = useState(false);
+  const { setPageLike, isLike, setIsLike } = useContext(MyContext);
 
   const listIcons = [
     { name: "home", default: homeIcon, title: "Início" },
@@ -25,12 +23,13 @@ function Header() {
 
   function handleLike() {
     setPageLike(true);
-    setIsLike(prev => !prev)
+    setIsLike(true)
     history.push("/play_like")
   }
 
   function handleHome() {
     setPageLike(false);
+    setIsLike(false);
     history.push("/")
   }
 

@@ -9,11 +9,12 @@ import { useHistory } from "react-router-dom";
 function ListLike() {
 
   const history = useHistory();
-  const { setPageLike } = useContext(MyContext);
+  const { setPageLike, setIsLike } = useContext(MyContext);
 
   function goBackListLike() {
     history.goBack();
     setPageLike(false);
+    setIsLike(false);
   }
 
   useEffect(() => {
