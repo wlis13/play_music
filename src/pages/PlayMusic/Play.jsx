@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { useHistory } from "react-router-dom";
 import MyContext from "../../context/context";
 import Audio from "../../components/Audio/audio";
 
@@ -13,12 +12,10 @@ function Play({
   audioRef,
 }) {
 
-  const history = useHistory();
-
-  const { setPageLike } = useContext(MyContext);
+  const { setPageLike, setShowPlay } = useContext(MyContext);
 
   function handleGoBack() {
-    history.goBack();
+    setShowPlay(false)
     setPageLike(false);
   }
 

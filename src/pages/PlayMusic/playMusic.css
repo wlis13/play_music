@@ -3,6 +3,10 @@
   background-color: rgb(71, 71, 71);
 }
 
+.not_show {
+  display: none;
+}
+
 .container_header_play_music {
   position: relative;
   display: flex;
