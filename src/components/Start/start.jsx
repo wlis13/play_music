@@ -33,7 +33,7 @@ function Start() {
 
 
   function handlePlay() {
-    setIsPlay(prev => !prev);
+    setIsPlay(true)
     handlePlayAudio()
   }
 
