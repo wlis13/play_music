@@ -22,7 +22,7 @@ function MainPage() {
       <Start />
       <Header />
       <Audio
-        clickedMusic={musics[clickedMusic]}
+        clickedMusic={musics.length > 0 && musics[clickedMusic]}
         handleAudioValue={handleAudioValue}
         isPlay={isPlay}
         audioRef={audioRef}

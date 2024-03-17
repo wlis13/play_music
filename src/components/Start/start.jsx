@@ -14,7 +14,7 @@ function Start() {
   const { isPlay, musics, clickedMusic, setIsPlay,
     fetchUpdateLike, setClickedMusic } = useContext(MyContext);
 
-  const addLike = useRef(musics[clickedMusic].like);
+  const addLike = useRef(musics.lenght > 0 && musics[clickedMusic].like);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -77,7 +77,7 @@ function Start() {
       setIsPlay(true)
     } else if (alt === "like" || alt === "notLike") {
       addLike.current = !addLike.current;
-      handleUpdateLike(musics[clickedMusic], addLike.current);
+      handleUpdateLike(musics.lenght > 0 && musics[clickedMusic], addLike.current);
     }
   }
 
@@ -93,7 +93,7 @@ function Start() {
   return (
     <div className="container_menu_play">
       {
-        listIcons.filter((item) => musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like").map((icon) => (
+        listIcons.filter((item) => musics.lenght > 0 && musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like").map((icon) => (
           <img
             src={icon.default}
             alt={icon.name}
