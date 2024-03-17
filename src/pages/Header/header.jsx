@@ -17,10 +17,10 @@ function Header() {
   const [isLike, setIsLike] = useState(false);
 
   const listIcons = [
-    { name: "home", default: homeIcon },
-    { name: "search", default: searchIcon },
-    { name: "handleLike", default: isLike ? likeIcon : notLikeIcon },
-    { name: "spotyfree", default: spotyfreeIcon }
+    { name: "home", default: homeIcon, title: "Início" },
+    { name: "search", default: searchIcon, title: "Buscar" },
+    { name: "handleLike", default: isLike ? likeIcon : notLikeIcon, title: "Favoritos" },
+    { name: "spotyfree", default: spotyfreeIcon, title: "Premium" }
   ]
 
   function handleLike() {
@@ -29,10 +29,17 @@ function Header() {
     history.push("/play_like")
   }
 
+  function handleHome() {
+    setPageLike(false);
+    history.push("/")
+  }
+
   function handleClick({ target }) {
     const { alt } = target;
     if (alt === "handleLike") {
       handleLike()
+    } else if (alt === "home") {
+      handleHome();
     }
   }
 
@@ -40,12 +47,15 @@ function Header() {
     <div className="container_manager_header">
       {
         listIcons.map((icon) => (
-          <img
-            src={icon.default}
-            alt={icon.name}
-            key={icon.name}
-            onClick={handleClick}
-          />
+          <section className="container_image_title" key={icon.name}>
+            <img
+              src={icon.default}
+              alt={icon.name}
+              key={icon.name}
+              onClick={handleClick}
+            />
+            <p>{icon.title}</p>
+          </section>
         ))
       }
     </div>

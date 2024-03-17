@@ -20,6 +20,7 @@ function ListMusic() {
     <div className="container_manager_list_music">
       {musics.length > 0 ?
         musics.filter((item) => pageLike ? item.like === true : item)
+          .slice(!pageLike && 0, 8)
           .map((music) => (
             <section
               onClick={() => { handleRoute(music._id) }}

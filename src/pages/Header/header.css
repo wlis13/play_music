@@ -3,11 +3,21 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 20px 0px;
+  align-items: center;
+  padding: 10px 0px;
   border-top: 1px solid rgb(231, 231, 231);
 }
 
-.container_manager_header img {
-  width: 5%;
+.container_image_title {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_image_title img {
+  width: 23%;
+  margin-bottom: 10px;
   cursor: pointer;
 }
