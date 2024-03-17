@@ -20,7 +20,11 @@ function PlayMusic() {
     musics,
     isPlay,
     setIsPlay,
-    fetchUpdateLike
+    fetchUpdateLike,
+    setSaveTimeMusic,
+    setCurrentPath,
+    audio,
+    setAudio
   } = useContext(MyContext);
   const audioRef = useRef(null);
 
@@ -38,15 +42,15 @@ function PlayMusic() {
   const [callJump, setCallJump] = useState(1);
   const addLike = useRef(musics[clickedMusic].like);
 
-  function handlePlayAudio() {
-    const audio = document.getElementById("audio");
 
+  function handlePlayAudio() {
     if (audio.paused) {
       audio.play();
     } else {
       audio.pause()
     }
   }
+
 
   function handlePlay() {
     setIsPlay(prev => !prev);
@@ -143,7 +147,9 @@ function PlayMusic() {
   }
 
   useEffect(() => {
+    setSaveTimeMusic(currentTime)
     const audio = document.getElementById("audio");
+    setAudio(audio)
     if (audio) {
       if (totalTime > 0) {
         if (currentTime === totalTime) {
@@ -163,7 +169,11 @@ function PlayMusic() {
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime]);
+  }, [callJump, clickedMusic, currentTime, musics.length, setAudio, setClickedMusic, setSaveTimeMusic, totalTime]);
+
+  useEffect(() => {
+    setCurrentPath("play")
+  }, [setCurrentPath])
 
   return (
     <div className="container_manager_play_music">

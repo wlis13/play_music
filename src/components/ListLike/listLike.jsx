@@ -18,8 +18,17 @@ function ListLike() {
   }
 
   useEffect(() => {
-    setPageLike(true)
-  }, [setPageLike])
+    setPageLike(true);
+
+    function handlePopState() {
+      setIsLike(false);
+      setPageLike(false);
+    }
+
+    return (() => {
+      window.addEventListener("popstate", handlePopState)
+    })
+  }, [setIsLike, setPageLike])
 
   return (
     <div>

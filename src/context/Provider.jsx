@@ -8,7 +8,10 @@ function Provider({ children }) {
   const [clickedMusic, setClickedMusic] = useState(0);
   const [isPlay, setIsPlay] = useState(true);
   const [pageLike, setPageLike] = useState(false);
-  const [isLike, setIsLike] = useState(false)
+  const [isLike, setIsLike] = useState(false);
+  const [saveTimeMusic, setSaveTimeMusic] = useState(0);
+  const [currentPath, setCurrentPath] = useState("");
+  const [audio, setAudio] = useState();
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -49,7 +52,13 @@ function Provider({ children }) {
     setPageLike,
     fetchUpdateLike,
     isLike,
-    setIsLike
+    setIsLike,
+    saveTimeMusic,
+    setSaveTimeMusic,
+    currentPath,
+    setCurrentPath,
+    audio,
+    setAudio
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./listMusic.css";
 import MyContext from "../../context/context";
 import ShowLoad from "../ShowLoad/showLoad";
@@ -9,12 +9,16 @@ function ListMusic() {
 
   const history = useHistory();
 
-  const { musics, setClickedMusic, pageLike } = useContext(MyContext);
+  const { musics, setClickedMusic, pageLike, setCurrentPath } = useContext(MyContext);
 
   function handleRoute(id) {
     setClickedMusic(musics.findIndex((music) => music._id === id));
     history.push("/play")
   }
+
+  useEffect(() => {
+    setCurrentPath("list_music")
+  }, [setCurrentPath])
 
   return (
     <div className="container_manager_list_music">
