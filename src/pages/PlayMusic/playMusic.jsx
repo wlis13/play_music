@@ -36,7 +36,7 @@ function PlayMusic() {
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [callJump, setCallJump] = useState(1);
-  const [addLike, setAddLike] = useState(false);
+  const addLike = useRef(musics[clickedMusic].like);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -98,8 +98,8 @@ function PlayMusic() {
       handleNextAndPrev(alt);
       setIsPlay(true)
     } else if (alt === "like" || alt === "notLike") {
-      setAddLike(prev => !prev);
-      handleUpdateLike(musics[clickedMusic], addLike);
+      addLike.current = !addLike.current;
+      handleUpdateLike(musics[clickedMusic], addLike.current);
     }
   }
 
@@ -182,7 +182,7 @@ function PlayMusic() {
       }
       <div className="container_menu_play">
         {
-          listIcons.filter((item) => !addLike ? item.name !== "notLike" : item.name !== "like").map((icon) => (
+          listIcons.filter((item) => musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like").map((icon) => (
             <img
               src={icon.default}
               alt={icon.name}

@@ -30,6 +30,7 @@ function Provider({ children }) {
       },
       body: JSON.stringify(music),
     });
+    fetchMusics();
   }
 
   useEffect(() => {
