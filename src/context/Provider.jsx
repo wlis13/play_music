@@ -9,8 +9,6 @@ function Provider({ children }) {
   const [isPlay, setIsPlay] = useState(true);
   const [pageLike, setPageLike] = useState(false);
   const [isLike, setIsLike] = useState(false);
-  const [saveTimeMusic, setSaveTimeMusic] = useState(0);
-  const [currentPath, setCurrentPath] = useState("");
   const [audio, setAudio] = useState();
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
@@ -64,10 +62,6 @@ function Provider({ children }) {
     fetchUpdateLike,
     isLike,
     setIsLike,
-    saveTimeMusic,
-    setSaveTimeMusic,
-    currentPath,
-    setCurrentPath,
     audio,
     setAudio,
     audioRef,

@@ -14,8 +14,6 @@ function PlayMusic({ showPlay }) {
     setClickedMusic,
     musics,
     isPlay,
-    setSaveTimeMusic,
-    setCurrentPath,
     audioRef,
     handleAudioValue,
     currentTime,
@@ -58,8 +56,6 @@ function PlayMusic({ showPlay }) {
   }
 
   useEffect(() => {
-    setSaveTimeMusic(currentTime);
-
     const audio = document.getElementById("audio");
     if (audio) {
       if (totalTime > 0) {
@@ -80,11 +76,7 @@ function PlayMusic({ showPlay }) {
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, setSaveTimeMusic, totalTime]);
-
-  useEffect(() => {
-    setCurrentPath("play")
-  }, [setCurrentPath])
+  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime]);
 
   return (
     <div className={`container_manager_play_music ${!showPlay ? "not_show" : ""}`}>
