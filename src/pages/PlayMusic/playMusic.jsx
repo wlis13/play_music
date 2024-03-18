@@ -1,24 +1,21 @@
-import spotyfree from "./image/spotyfree_logo.png";
 import returnIcon from "./image/arrow_for_down_white.png";
 import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
 import Play from "./Play";
-import PropType from "prop-types";
 import "./playMusic.css";
 
-function PlayMusic({ showPlay }) {
+function PlayMusic() {
 
   const {
     clickedMusic,
     setClickedMusic,
     musics,
-    isPlay,
     audioRef,
-    handleAudioValue,
     currentTime,
     totalTime,
-    startPlayBack
+    startPlayBack,
+    showPlay
   } = useContext(MyContext);
 
   const [callJump, setCallJump] = useState(1);
@@ -95,12 +92,8 @@ function PlayMusic({ showPlay }) {
         musics.length > 0 ?
           <Play
             returnIcon={returnIcon}
-            spotyfree={spotyfree}
             clickedMusic={musics[clickedMusic]}
-            handleAudioValue={handleAudioValue}
             showTimeMusic={showTimeMusic}
-            isPlay={isPlay}
-            audioRef={audioRef}
           />
           : <ShowLoad />
       }
@@ -108,8 +101,5 @@ function PlayMusic({ showPlay }) {
   );
 }
 
-PlayMusic.propTypes = {
-  showPlay: PropType.bool.isRequired,
-}
 
 export default PlayMusic;

@@ -9,6 +9,7 @@ import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
 import { useContext, useRef } from "react";
 import MyContext from "../../context/context";
+import Audio from "../Audio/audio";
 
 function Start() {
 
@@ -21,18 +22,29 @@ function Start() {
     setClickedMusic,
     showPlay,
     startPlayBack,
-    setStartPlayBack
+    setStartPlayBack,
+    handleAudioValue,
+    audioRef
   } = useContext(MyContext);
 
-  const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
+  const listIcons = [
+    { name: "notLike", default: notLike },
+    { name: "like", default: like },
+    { name: "prev", default: prev },
+    { name: "playEndpause", default: isPlay ? play : pause },
+    { name: "next", default: next },
+    { name: "playback", default: startPlayBack ? playbackInit : playback },
+  ];
 
+  const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
     if (audio.paused) {
       audio.play();
     } else {
-      audio.pause()
+      audio.pause();
     }
+
   }
 
   function handlePlay() {
@@ -96,18 +108,6 @@ function Start() {
     }
   }
 
-  const listIcons = [
-    { name: "notLike", default: notLike },
-    { name: "like", default: like },
-    { name: "prev", default: prev },
-    { name: "playEndpause", default: isPlay ? play : pause },
-    { name: "next", default: next },
-    { name: "playback", default: startPlayBack ? playbackInit : playback },
-  ];
-
-  // const styleLike = {
-
-  // }
 
   return (
     <div className={`${showPlay === "main_page"
@@ -151,6 +151,12 @@ function Start() {
             }
           </div>
       }
+      <Audio
+        clickedMusic={clickedMusic}
+        handleAudioValue={handleAudioValue}
+        isPlay={isPlay}
+        audioRef={audioRef}
+      />
     </div>
   );
 }

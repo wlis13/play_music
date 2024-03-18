@@ -1,15 +1,11 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import MyContext from "../../context/context";
-import Audio from "../../components/Audio/audio";
 
 function Play({
   returnIcon,
   clickedMusic,
-  handleAudioValue,
   showTimeMusic,
-  isPlay,
-  audioRef,
 }) {
 
   const { setFilteredPageLike, setShowPlay } = useContext(MyContext);
@@ -34,12 +30,6 @@ function Play({
       />
       {showTimeMusic()}
       <h2>{clickedMusic.title}</h2>
-      <Audio
-        clickedMusic={clickedMusic}
-        handleAudioValue={handleAudioValue}
-        isPlay={isPlay}
-        audioRef={audioRef}
-      />
     </div>
   );
 }
