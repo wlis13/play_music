@@ -30,4 +30,25 @@
   width: 5%;
   height: 5%;
   cursor: pointer;
+  margin-right: 15px;
+}
+
+#container_title_main_page {
+  overflow: hidden;
+}
+
+#title_menu_main_page {
+  position: relative;
+  left: 0px;
+  animation: moveLeftTitle 8s linear infinite;
+}
+
+@keyframes moveLeftTitle {
+  0% {
+    left: 160px;
+  }
+
+  100% {
+    left: -160px;
+  }
 }

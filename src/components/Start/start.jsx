@@ -96,6 +96,10 @@ function Start() {
     { name: "spotyfree", default: spotyfree },
   ];
 
+  // const styleLike = {
+
+  // }
+
   return (
     <div className={`${showPlay === "main_page"
       ? "menu_play_main_page"
@@ -119,7 +123,9 @@ function Start() {
           </div>
           :
           <div className="container_menu_main_page">
-            <p>{musics.length > 0 && musics[clickedMusic].title}</p>
+            <div id="container_title_main_page">
+              <p id="title_menu_main_page">{musics.length > 0 && musics[clickedMusic].title}</p>
+            </div>
             {
               listIcons.filter((item) => musics.length > 0
                 && musics[clickedMusic].like
