@@ -119,7 +119,7 @@ function Start() {
           </div>
           :
           <div className="container_menu_main_page">
-            <p>{musics[clickedMusic].title}</p>
+            <p>{musics.length > 0 && musics[clickedMusic].title}</p>
             {
               listIcons.filter((item) => musics.length > 0
                 && musics[clickedMusic].like
