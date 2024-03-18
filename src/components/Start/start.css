@@ -35,6 +35,8 @@
 
 #container_title_main_page {
   overflow: hidden;
+  white-space: nowrap;
+  width: 50%;
 }
 
 #title_menu_main_page {
