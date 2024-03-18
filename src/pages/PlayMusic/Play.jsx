@@ -12,11 +12,11 @@ function Play({
   audioRef,
 }) {
 
-  const { setPageLike, setShowPlay } = useContext(MyContext);
+  const { setFilteredPageLike, setShowPlay } = useContext(MyContext);
 
   function handleGoBack() {
     setShowPlay("main_page")
-    setPageLike(false);
+    setFilteredPageLike(false);
   }
 
   return (

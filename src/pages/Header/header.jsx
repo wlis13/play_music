@@ -9,7 +9,7 @@ import MyContext from "../../context/context";
 
 function Header() {
 
-  const { setPageLike, isLike, setIsLike } = useContext(MyContext);
+  const { setFilteredPageLike, isLike, setIsLike, setShowPlay } = useContext(MyContext);
 
   const listIcons = [
     { name: "home", default: homeIcon, title: "Início" },
@@ -19,13 +19,15 @@ function Header() {
   ]
 
   function handleLike() {
-    setPageLike(true);
-    setIsLike(true)
+    setFilteredPageLike(true);
+    setIsLike(true);
+    setShowPlay("list_like");
   }
 
   function handleHome() {
-    setPageLike(false);
+    setFilteredPageLike(false);
     setIsLike(false);
+    setShowPlay("main_page");
   }
 
   function handleClick({ target }) {
@@ -41,12 +43,15 @@ function Header() {
     <div className="container_manager_header">
       {
         listIcons.map((icon) => (
-          <section className="container_image_title" key={icon.name}>
+          <section
+            className="container_image_title"
+            key={icon.name}
+            onClick={handleClick}
+          >
             <img
               src={icon.default}
               alt={icon.name}
               key={icon.name}
-              onClick={handleClick}
             />
             <p>{icon.title}</p>
           </section>

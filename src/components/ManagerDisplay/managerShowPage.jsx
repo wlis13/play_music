@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import "./listMusic.css";
+import "./managerShowPage.css";
 import MyContext from "../../context/context";
 import ShowLoad from "../ShowLoad/showLoad";
 import iconFavicon from "./images/spotyfree_favidon.png";
 import PlayMusic from "../../pages/PlayMusic/playMusic";
 
-function ListMusic() {
+function ManagerShowPage() {
 
 
   const {
     musics,
     setClickedMusic,
-    pageLike,
+    filteredPageLike,
     showPlay,
     setShowPlay
   } = useContext(MyContext);
@@ -27,8 +27,8 @@ function ListMusic() {
         className={`container_manager_list_music ${showPlay !== "main_page" ? "not_showing_list_music" : ""}`}
       >
         {musics.length > 0 ?
-          musics.filter((item) => pageLike ? item.like === true : item)
-            .slice(!pageLike && 0, 8)
+          musics.filter((item) => filteredPageLike ? item.like === true : item)
+            .slice(!filteredPageLike && 0, 8)
             .map((music) => (
               <section
                 onClick={() => { handleRoute(music._id) }}
@@ -52,4 +52,4 @@ function ListMusic() {
 
   );
 }
-export default ListMusic;
+export default ManagerShowPage;

@@ -4,7 +4,8 @@ import like from "./images/like.png";
 import next from "./images/next.png";
 import prev from "./images/prev.png";
 import play from "./images/pause.png";
-import spotyfree from "./images/spotyfree_logo.png";
+import playback from "./images/playback_thirth.png";
+import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
 import { useContext, useRef } from "react";
 import MyContext from "../../context/context";
@@ -18,7 +19,9 @@ function Start() {
     setIsPlay,
     fetchUpdateLike,
     setClickedMusic,
-    showPlay
+    showPlay,
+    startPlayBack,
+    setStartPlayBack
   } = useContext(MyContext);
 
   const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
@@ -74,6 +77,10 @@ function Start() {
     fetchUpdateLike(updatedLike);
   }
 
+  function initPlayBack() {
+    setStartPlayBack(prev => !prev);
+  }
+
   function handleEvents({ target }) {
     const { alt } = target;
     if (alt === "playEndpause") {
@@ -84,6 +91,8 @@ function Start() {
     } else if (alt === "like" || alt === "notLike") {
       addLike.current = !addLike.current;
       handleUpdateLike(musics.length > 0 && musics[clickedMusic], addLike.current);
+    } else if (alt === "playback") {
+      initPlayBack();
     }
   }
 
@@ -93,7 +102,7 @@ function Start() {
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
-    { name: "spotyfree", default: spotyfree },
+    { name: "playback", default: startPlayBack ? playbackInit : playback },
   ];
 
   // const styleLike = {
@@ -129,8 +138,8 @@ function Start() {
             {
               listIcons.filter((item) => musics.length > 0
                 && musics[clickedMusic].like
-                ? item.name !== "notLike" && item.name !== "prev" && item.name !== "spotyfree"
-                : item.name !== "like" && item.name !== "prev" && item.name !== "spotyfree")
+                ? item.name !== "notLike" && item.name !== "prev" && item.name !== "playback"
+                : item.name !== "like" && item.name !== "prev" && item.name !== "playback")
                 .map((icon) => (
                   <img
                     src={icon.default}

@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
-import Header from "../../pages/Header/header";
-import ListMusic from "../ListMusic/listMusic";
+import ListMusic from "../ManagerDisplay/listMusic";
 import MyContext from "../../context/context";
 import goBackImage from "./images/arrow_for_down_white.png";
 import "./listLike.css";
@@ -9,30 +8,30 @@ import { useHistory } from "react-router-dom";
 function ListLike() {
 
   const history = useHistory();
-  const { setPageLike, setIsLike } = useContext(MyContext);
+  const { setFilteredPageLike, setIsLike, showPlay } = useContext(MyContext);
 
   function goBackListLike() {
     history.goBack();
-    setPageLike(false);
+    setFilteredPageLike(false);
     setIsLike(false);
   }
 
   useEffect(() => {
-    setPageLike(true);
+    setFilteredPageLike(true);
 
     function handlePopState() {
       setIsLike(false);
-      setPageLike(false);
+      setFilteredPageLike(false);
     }
 
     return (() => {
       window.addEventListener("popstate", handlePopState)
     })
-  }, [setIsLike, setPageLike])
+  }, [setIsLike, setFilteredPageLike])
 
   return (
     <div>
-      <header className="container_header_list_like">
+      <header className={`container_header_list_like ${showPlay !== "list_like" ? "not_show_like" : ""}`}>
         <img
           onClick={goBackListLike}
           src={goBackImage}
@@ -40,7 +39,6 @@ function ListLike() {
         />
       </header>
       <ListMusic />
-      <Header />
     </div>
   );
 }

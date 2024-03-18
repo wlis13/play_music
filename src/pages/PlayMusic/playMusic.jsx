@@ -18,6 +18,7 @@ function PlayMusic({ showPlay }) {
     handleAudioValue,
     currentTime,
     totalTime,
+    startPlayBack
   } = useContext(MyContext);
 
   const [callJump, setCallJump] = useState(1);
@@ -58,25 +59,35 @@ function PlayMusic({ showPlay }) {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
-      if (totalTime > 0) {
-        if (currentTime === totalTime) {
-          if (callJump === 1000) {
-            setCallJump(1);
-          }
-          setCallJump(callJump + 1);
-          if (callJump % 2 !== 0) {
-            if (clickedMusic < musics.length - 1) {
-              setClickedMusic(clickedMusic + 1);
-              audio.play();
-            } else {
-              setClickedMusic(0)
-              audio.play();
+      if (startPlayBack) {
+        if (totalTime > 0) {
+          if (currentTime === totalTime) {
+            if (callJump === 1000) {
+              setCallJump(1);
+            }
+            setCallJump(callJump + 1);
+            if (callJump % 2 !== 0) {
+              if (clickedMusic < musics.length - 1) {
+                setClickedMusic(clickedMusic + 1);
+                audio.play();
+              } else {
+                setClickedMusic(0)
+                audio.play();
+              }
             }
           }
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime]);
+  }, [
+    callJump,
+    clickedMusic,
+    currentTime,
+    musics.length,
+    setClickedMusic,
+    startPlayBack,
+    totalTime
+  ]);
 
   return (
     <div className={`container_manager_play_music ${showPlay !== "reproduction" ? "not_show" : ""}`}>
