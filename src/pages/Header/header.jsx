@@ -4,13 +4,10 @@ import likeIcon from "./images/like.png";
 import notLikeIcon from "./images/not_like.png";
 import spotyfreeIcon from "./images/spotyfree_logo.png";
 import { useContext } from "react";
-import { useHistory } from "react-router-dom"
 import "./header.css";
 import MyContext from "../../context/context";
 
 function Header() {
-
-  const history = useHistory();
 
   const { setPageLike, isLike, setIsLike } = useContext(MyContext);
 
@@ -24,13 +21,11 @@ function Header() {
   function handleLike() {
     setPageLike(true);
     setIsLike(true)
-    history.push("/play_like")
   }
 
   function handleHome() {
     setPageLike(false);
     setIsLike(false);
-    history.push("/")
   }
 
   function handleClick({ target }) {

@@ -17,7 +17,8 @@ function Start() {
     clickedMusic,
     setIsPlay,
     fetchUpdateLike,
-    setClickedMusic
+    setClickedMusic,
+    showPlay
   } = useContext(MyContext);
 
   const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
@@ -96,16 +97,44 @@ function Start() {
   ];
 
   return (
-    <div className="container_menu_play">
+    <div className={`${showPlay === "main_page"
+      ? "menu_play_main_page"
+      : "container_menu_play"}`}
+    >
       {
-        listIcons.filter((item) => musics.length > 0 && musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like").map((icon) => (
-          <img
-            src={icon.default}
-            alt={icon.name}
-            key={icon.name}
-            onClick={handleEvents}
-          />
-        ))
+        showPlay === "reproduction" ?
+          <div className="container_menu_reproduction">
+            {
+              listIcons.filter((item) => musics.length > 0
+                && musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like")
+                .map((icon) => (
+                  <img
+                    src={icon.default}
+                    alt={icon.name}
+                    key={icon.name}
+                    onClick={handleEvents}
+                  />
+                ))
+            }
+          </div>
+          :
+          <div className="container_menu_main_page">
+            <p>{musics[clickedMusic].title}</p>
+            {
+              listIcons.filter((item) => musics.length > 0
+                && musics[clickedMusic].like
+                ? item.name !== "notLike" && item.name !== "prev" && item.name !== "spotyfree"
+                : item.name !== "like" && item.name !== "prev" && item.name !== "spotyfree")
+                .map((icon) => (
+                  <img
+                    src={icon.default}
+                    alt={icon.name}
+                    key={icon.name}
+                    onClick={handleEvents}
+                  />
+                ))
+            }
+          </div>
       }
     </div>
   );

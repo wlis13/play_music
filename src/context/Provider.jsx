@@ -12,7 +12,7 @@ function Provider({ children }) {
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
-  const [showPlay, setShowPlay] = useState(false);
+  const [showPlay, setShowPlay] = useState("main_page");
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";

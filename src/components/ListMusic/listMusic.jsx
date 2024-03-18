@@ -18,13 +18,13 @@ function ListMusic() {
 
   function handleRoute(id) {
     setClickedMusic(musics.findIndex((music) => music._id === id));
-    setShowPlay(true);
+    setShowPlay("reproduction");
   }
 
   return (
     <div>
       <div
-        className={`container_manager_list_music ${showPlay ? "not_showing_list_music" : ""}`}
+        className={`container_manager_list_music ${showPlay !== "main_page" ? "not_showing_list_music" : ""}`}
       >
         {musics.length > 0 ?
           musics.filter((item) => pageLike ? item.like === true : item)

@@ -15,7 +15,7 @@ function Play({
   const { setPageLike, setShowPlay } = useContext(MyContext);
 
   function handleGoBack() {
-    setShowPlay(false)
+    setShowPlay("main_page")
     setPageLike(false);
   }
 

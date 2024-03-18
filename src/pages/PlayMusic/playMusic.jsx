@@ -79,7 +79,7 @@ function PlayMusic({ showPlay }) {
   }, [callJump, clickedMusic, currentTime, musics.length, setClickedMusic, totalTime]);
 
   return (
-    <div className={`container_manager_play_music ${!showPlay ? "not_show" : ""}`}>
+    <div className={`container_manager_play_music ${showPlay !== "reproduction" ? "not_show" : ""}`}>
       {
         musics.length > 0 ?
           <Play
