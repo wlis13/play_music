@@ -9,7 +9,6 @@ import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
 import { useContext, useRef } from "react";
 import MyContext from "../../context/context";
-import Audio from "../Audio/audio";
 
 function Start() {
 
@@ -23,8 +22,6 @@ function Start() {
     showPlay,
     startPlayBack,
     setStartPlayBack,
-    handleAudioValue,
-    audioRef
   } = useContext(MyContext);
 
   const listIcons = [
@@ -37,8 +34,10 @@ function Start() {
   ];
 
   const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
+
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
+
     if (audio.paused) {
       audio.play();
     } else {
@@ -151,12 +150,6 @@ function Start() {
             }
           </div>
       }
-      <Audio
-        clickedMusic={clickedMusic}
-        handleAudioValue={handleAudioValue}
-        isPlay={isPlay}
-        audioRef={audioRef}
-      />
     </div>
   );
 }

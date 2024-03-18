@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import ListMusic from "../ManagerDisplay/listMusic";
 import MyContext from "../../context/context";
 import goBackImage from "./images/arrow_for_down_white.png";
 import "./listLike.css";
 import { useHistory } from "react-router-dom";
+import ListMusics from "../ManagerDisplay/listMusic";
 
 function ListLike() {
 
@@ -38,7 +38,7 @@ function ListLike() {
           alt="voltar para a página anterior"
         />
       </header>
-      <ListMusic />
+      <ListMusics />
     </div>
   );
 }

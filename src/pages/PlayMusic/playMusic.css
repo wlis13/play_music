@@ -35,11 +35,11 @@
 
 @keyframes moveLeft {
   0% {
-    left: 250px
+    left: 250px;
   }
 
   100% {
-    left: -1600px
+    left: -900%;
   }
 }
 

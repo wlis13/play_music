@@ -46,6 +46,11 @@ function Provider({ children }) {
     return currentTime;
   }
 
+  function handleInputValue({ target }) {
+    const { value } = target;
+    audioRef.current.currentTime = value;
+  }
+
   useEffect(() => {
     fetchMusics()
   }, [])
@@ -69,7 +74,8 @@ function Provider({ children }) {
     showPlay,
     setShowPlay,
     startPlayBack,
-    setStartPlayBack
+    setStartPlayBack,
+    handleInputValue
   }
 
   return (

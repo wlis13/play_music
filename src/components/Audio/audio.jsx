@@ -7,7 +7,7 @@ function Audio({ audioRef, isPlay, clickedMusic, handleAudioValue }) {
         ref={audioRef}
         autoPlay={isPlay}
         id="audio"
-        src={clickedMusic.music}
+        src={clickedMusic && clickedMusic.music}
         onTimeUpdate={handleAudioValue}
       />
     </div>

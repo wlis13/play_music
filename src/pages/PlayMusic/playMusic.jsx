@@ -11,19 +11,14 @@ function PlayMusic() {
     clickedMusic,
     setClickedMusic,
     musics,
-    audioRef,
     currentTime,
     totalTime,
     startPlayBack,
-    showPlay
+    showPlay,
+    handleInputValue
   } = useContext(MyContext);
 
   const [callJump, setCallJump] = useState(1);
-
-  function handleInputValue({ target }) {
-    const { value } = target;
-    audioRef.current.currentTime = value;
-  }
 
   function formatterTime(time_seconds) {
     let minutes = Math.floor(time_seconds / 60);
