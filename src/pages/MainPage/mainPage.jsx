@@ -13,7 +13,7 @@ function MainPage() {
     isPlay,
     clickedMusic,
     handleAudioValue,
-    musics
+    musics,
   } = useContext(MyContext);
 
   return (

@@ -83,6 +83,16 @@ function Provider({ children }) {
     }
   }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
 
+  useEffect(() => {
+    if (showPlay === "list_like") {
+      const storageLikeMusic = localStorage.getItem("listLike") || [];
+      let listLike = [];
+      listLike = musics.filter((music) => storageLikeMusic
+        .includes(music._id))
+
+    }
+  }, [musics, showPlay]);
+
   const providerValue = {
     fetchMusics,
     musics,
