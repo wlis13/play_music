@@ -10,6 +10,15 @@ function Play({
 
   const { setFilteredPageLike, setShowPlay } = useContext(MyContext);
 
+  function handleAnimation() {
+    let root = document.documentElement;
+    const text = document.getElementById("text_description");
+    const textLength = -text.getBoundingClientRect().width + "px"
+    root.style.setProperty("--length-text", textLength);
+  }
+
+  handleAnimation();
+
   function handleGoBack() {
     setShowPlay("main_page")
     setFilteredPageLike(false);

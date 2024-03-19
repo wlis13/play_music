@@ -83,13 +83,13 @@ function Start() {
 
   function handleUpdateLike() {
     let list = JSON.parse(localStorage.getItem("listLike")) || [];
-    const clickedMusicId = musics[clickedMusic]._id;
+    const ID = musics[clickedMusic]._id;
 
-    if (!list.includes(clickedMusicId)) {
-      list.push(clickedMusicId);
+    if (!list.includes(ID)) {
+      list.push(ID);
       localStorage.setItem("listLike", JSON.stringify(list));
     } else {
-      list = list.filter(id => id !== clickedMusicId);
+      list = list.filter(id => id !== ID);
       localStorage.setItem("listLike", JSON.stringify(list));
     }
   }

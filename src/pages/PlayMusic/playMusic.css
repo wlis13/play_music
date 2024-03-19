@@ -1,3 +1,7 @@
+:root {
+  --length-text: 250px
+}
+
 .container_manager_play_music {
   height: 100%;
   background-color: rgb(71, 71, 71);
@@ -27,22 +31,20 @@
 
 #text_description {
   position: relative;
+  display: inline-block;
   white-space: nowrap;
-  left: 250px;
-  animation: moveLeft 20s linear infinite;
-  animation-delay: 2s;
+  animation: handleText 20s linear infinite;
 }
 
-@keyframes moveLeft {
+@keyframes handleText {
   0% {
     left: 250px;
   }
 
   100% {
-    left: -900%;
+    left: var(--length-text)
   }
 }
-
 
 .container_object_music {
   display: flex;
