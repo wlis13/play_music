@@ -13,10 +13,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 8px 0px;
 }
 
 .container_image_title img {
   width: 23%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   cursor: pointer;
 }

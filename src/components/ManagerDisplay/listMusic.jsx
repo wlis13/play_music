@@ -23,10 +23,17 @@ function ListMusics() {
           .map((music) => (
             <section
               onClick={() => { handleRoute(music._id) }}
-              key={music.title}>
-              <img className="icon_aside" src={iconFavicon} alt="apotyfree" />
-              <img className="image_music" src={music.image} alt={music.title} />
-              <aside className="title_and_category">
+              key={music.title}
+            >
+              <img className={`icon_aside ${showPlay === "list_like" ? "icon_aside_like_page" : ""}`}
+                src={iconFavicon}
+                alt="apotyfree"
+              />
+              <img className={`image_music ${showPlay === "list_like" ? "image_music_like_page" : ""}`}
+                src={music.image}
+                alt={music.title}
+              />
+              <aside className={`title_and_category ${showPlay === "list_like" ? "title_and_category_like_page" : ""}`}>
                 <h2>{music.title}</h2>
                 <h3>{music.category}</h3>
               </aside>
