@@ -13,8 +13,10 @@ function Play({
   function handleAnimation() {
     let root = document.documentElement;
     const text = document.getElementById("text_description");
-    const textLength = -text.getBoundingClientRect().width + "px"
-    root.style.setProperty("--length-text", textLength);
+    if (text) {
+      const textLength = -text.getBoundingClientRect().width + "px"
+      root.style.setProperty("--length-text", textLength);
+    }
   }
 
   handleAnimation();

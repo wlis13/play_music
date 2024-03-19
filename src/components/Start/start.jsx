@@ -114,6 +114,17 @@ function Start() {
     }
   }
 
+  function animationTitle() {
+    let root = document.documentElement;
+    const title = document.getElementById("title_menu_main_page");
+    if (title) {
+      const lengthTitle = (-title.getBoundingClientRect().width - 50) + "px";
+      root.style.setProperty("--length-title", lengthTitle);
+    }
+  }
+
+  animationTitle();
+
 
   return (
     <div className={`${showPlay === "main_page"
