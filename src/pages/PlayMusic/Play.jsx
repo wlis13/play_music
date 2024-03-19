@@ -47,12 +47,8 @@ function Play({
 
 Play.propTypes = {
   returnIcon: PropTypes.string.isRequired,
-  musics: PropTypes.array.isRequired,
   clickedMusic: PropTypes.object.isRequired,
-  handleAudioValue: PropTypes.func.isRequired,
   showTimeMusic: PropTypes.func.isRequired,
-  isPlay: PropTypes.bool.isRequired,
-  audioRef: PropTypes.object.isRequired,
 }
 
 export default Play;
