@@ -3,7 +3,7 @@ import Start from "../../components/Start/start";
 import ManagerShowPage from "../../components/ManagerDisplay/managerShowPage";
 import "./mainPage.css";
 import Audio from "../../components/Audio/audio";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/context";
 
 function MainPage() {
@@ -14,7 +14,18 @@ function MainPage() {
     clickedMusic,
     handleAudioValue,
     musics,
+    showPlay,
+    storageLikeList,
   } = useContext(MyContext);
+
+  const [likeMusic, setLikeMusic] = useState([]);
+  const nowLike = showPlay === "list_like";
+
+  useEffect(() => {
+    if (nowLike) {
+      setLikeMusic(musics.filter((music) => storageLikeList.includes(music._id)));
+    }
+  }, [musics, nowLike, showPlay, storageLikeList])
 
   return (
     <div className="container_manager_main_page">
@@ -24,7 +35,7 @@ function MainPage() {
       <Audio
         audioRef={audioRef}
         isPlay={isPlay}
-        clickedMusic={musics && musics[clickedMusic]}
+        clickedMusic={nowLike ? likeMusic[clickedMusic] : musics && musics[clickedMusic]}
         handleAudioValue={handleAudioValue}
       />
     </div>

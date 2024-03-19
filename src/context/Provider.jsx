@@ -17,6 +17,7 @@ function Provider({ children }) {
   const [callJump, setCallJump] = useState(1);
 
   const playBack = localStorage.getItem("playback");
+  const storageLikeList = localStorage.getItem("listLike") || [];
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -83,16 +84,6 @@ function Provider({ children }) {
     }
   }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
 
-  useEffect(() => {
-    if (showPlay === "list_like") {
-      const storageLikeMusic = localStorage.getItem("listLike") || [];
-      let listLike = [];
-      listLike = musics.filter((music) => storageLikeMusic
-        .includes(music._id))
-
-    }
-  }, [musics, showPlay]);
-
   const providerValue = {
     fetchMusics,
     musics,
@@ -114,6 +105,7 @@ function Provider({ children }) {
     startPlayBack,
     setStartPlayBack,
     handleInputValue,
+    storageLikeList
   }
 
   return (

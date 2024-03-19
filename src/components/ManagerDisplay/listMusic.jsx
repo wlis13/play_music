@@ -4,7 +4,15 @@ import iconFavicon from "./images/spotyfree_favidon.png";
 import ShowLoad from "../ShowLoad/showLoad";
 
 function ListMusics() {
-  const { musics, filteredPageLike, setClickedMusic, setShowPlay, showPlay } = useContext(MyContext);
+  const {
+    musics,
+    filteredPageLike,
+    setClickedMusic,
+    setShowPlay,
+    showPlay,
+    storageLikeList
+  } = useContext(MyContext);
+
 
   function handleRoute(id) {
     setClickedMusic(musics.findIndex((music) => music._id === id));
@@ -18,7 +26,7 @@ function ListMusics() {
       className={`container_manager_list_music ${showPlay === "list_like" ? "layout_like_page" : ""}`}
     >
       {musics.length > 0 ?
-        musics.filter((item) => filteredPageLike ? item.like === true : item)
+        musics.filter((item) => showPlay === "list_like" ? storageLikeList.includes(item._id) : item)
           .slice(!filteredPageLike && 0, 8)
           .map((music) => (
             <section
