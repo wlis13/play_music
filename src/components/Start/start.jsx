@@ -82,7 +82,16 @@ function Start() {
   }
 
   function handleUpdateLike() {
-    localStorage.setItem("likeMusic", clickedMusic)
+    let list = JSON.parse(localStorage.getItem("listLike")) || [];
+    const clickedMusicId = musics[clickedMusic]._id;
+
+    if (!list.includes(clickedMusicId)) {
+      list.push(clickedMusicId);
+      localStorage.setItem("listLike", JSON.stringify(list));
+    } else {
+      list = list.filter(id => id !== clickedMusicId);
+      localStorage.setItem("listLike", JSON.stringify(list));
+    }
   }
 
   function initPlayBack() {
