@@ -13,11 +13,10 @@ function PlayMusic() {
     musics,
     currentTime,
     totalTime,
-    startPlayBack,
     showPlay,
-    handleInputValue
+    handleInputValue,
   } = useContext(MyContext);
-
+  const playBack = localStorage.getItem("playback");
   const [callJump, setCallJump] = useState(1);
 
   function formatterTime(time_seconds) {
@@ -51,7 +50,7 @@ function PlayMusic() {
   useEffect(() => {
     const audio = document.getElementById("audio");
     if (audio) {
-      if (startPlayBack) {
+      if (playBack === "true") {
         if (totalTime > 0) {
           if (currentTime === totalTime) {
             if (callJump === 1000) {
@@ -71,15 +70,7 @@ function PlayMusic() {
         }
       }
     }
-  }, [
-    callJump,
-    clickedMusic,
-    currentTime,
-    musics.length,
-    setClickedMusic,
-    startPlayBack,
-    totalTime
-  ]);
+  }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
 
   return (
     <div className={`container_manager_play_music ${showPlay !== "reproduction" ? "not_show" : ""}`}>

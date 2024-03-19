@@ -75,7 +75,7 @@ function Provider({ children }) {
     setShowPlay,
     startPlayBack,
     setStartPlayBack,
-    handleInputValue
+    handleInputValue,
   }
 
   return (

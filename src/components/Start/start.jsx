@@ -17,12 +17,10 @@ function Start() {
     musics,
     clickedMusic,
     setIsPlay,
-    fetchUpdateLike,
     setClickedMusic,
     showPlay,
-    startPlayBack,
-    setStartPlayBack,
   } = useContext(MyContext);
+  const playBack = localStorage.getItem("playback");
 
   const listIcons = [
     { name: "notLike", default: notLike },
@@ -30,7 +28,7 @@ function Start() {
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
-    { name: "playback", default: startPlayBack ? playbackInit : playback },
+    { name: "playback", default: playBack === "true" ? playbackInit : playback },
   ];
 
   const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
@@ -83,13 +81,13 @@ function Start() {
     }
   }
 
-  function handleUpdateLike(music, liked) {
-    const updatedLike = { ...music, like: liked }
-    fetchUpdateLike(updatedLike);
+  function handleUpdateLike() {
+    localStorage.setItem("likeMusic", clickedMusic)
   }
 
   function initPlayBack() {
-    setStartPlayBack(prev => !prev);
+    const newPlayBack = playBack === "true" ? false : true
+    localStorage.setItem("playback", newPlayBack);
   }
 
   function handleEvents({ target }) {
