@@ -30,11 +30,10 @@ function Header() {
     setShowPlay("main_page");
   }
 
-  function handleClick({ target }) {
-    const { alt } = target;
-    if (alt === "handleLike") {
+  function handleClick(name) {
+    if (name === "handleLike") {
       handleLike()
-    } else if (alt === "home") {
+    } else if (name === "home") {
       handleHome();
     }
   }
@@ -46,7 +45,7 @@ function Header() {
           <section
             className="container_image_title"
             key={icon.name}
-            onClick={handleClick}
+            onClick={() => { handleClick(icon.name) }}
           >
             <img
               src={icon.default}
