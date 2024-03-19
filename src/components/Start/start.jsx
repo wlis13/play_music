@@ -7,7 +7,7 @@ import play from "./images/pause.png";
 import playback from "./images/playback_thirth.png";
 import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import MyContext from "../../context/context";
 
 function Start() {
@@ -22,16 +22,16 @@ function Start() {
   } = useContext(MyContext);
   const playBack = localStorage.getItem("playback");
 
+  const storageLikeList = localStorage.getItem("listLike") || [];
+  const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
+
   const listIcons = [
-    { name: "notLike", default: notLike },
-    { name: "like", default: like },
+    { name: "handleLike", default: verifyLike ? like : notLike },
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
     { name: "playback", default: playBack === "true" ? playbackInit : playback },
   ];
-
-  const addLike = useRef(musics.length > 0 && musics[clickedMusic].like);
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
@@ -106,9 +106,8 @@ function Start() {
     } else if (alt === "next" || alt === "prev") {
       handleNextAndPrev(alt);
       setIsPlay(true)
-    } else if (alt === "like" || alt === "notLike") {
-      addLike.current = !addLike.current;
-      handleUpdateLike(musics.length > 0 && musics[clickedMusic], addLike.current);
+    } else if (alt === "handleLike") {
+      handleUpdateLike();
     } else if (alt === "playback") {
       initPlayBack();
     }
@@ -135,16 +134,14 @@ function Start() {
         showPlay === "reproduction" ?
           <div className="container_menu_reproduction">
             {
-              listIcons.filter((item) => musics.length > 0
-                && musics[clickedMusic].like ? item.name !== "notLike" : item.name !== "like")
-                .map((icon) => (
-                  <img
-                    src={icon.default}
-                    alt={icon.name}
-                    key={icon.name}
-                    onClick={handleEvents}
-                  />
-                ))
+              listIcons.map((icon) => (
+                <img
+                  src={icon.default}
+                  alt={icon.name}
+                  key={icon.name}
+                  onClick={handleEvents}
+                />
+              ))
             }
           </div>
           :
@@ -153,10 +150,9 @@ function Start() {
               <p id="title_menu_main_page">{musics.length > 0 && musics[clickedMusic].title}</p>
             </div>
             {
-              listIcons.filter((item) => musics.length > 0
-                && musics[clickedMusic].like
-                ? item.name !== "notLike" && item.name !== "prev" && item.name !== "playback"
-                : item.name !== "like" && item.name !== "prev" && item.name !== "playback")
+              listIcons.filter((item) => musics.length > 0 &&
+                item.name !== "prev" && item.name !== "playback"
+              )
                 .map((icon) => (
                   <img
                     src={icon.default}

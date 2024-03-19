@@ -15,7 +15,7 @@ function Audio({ audioRef, isPlay, clickedMusic, handleAudioValue }) {
 }
 
 Audio.propTypes = {
-  audioRef: PropType.string.isRequired,
+  audioRef: PropType.object.isRequired,
   isPlay: PropType.bool.isRequired,
   clickedMusic: PropType.object.isRequired,
   handleAudioValue: PropType.func.isRequired,
