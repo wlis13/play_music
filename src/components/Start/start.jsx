@@ -41,7 +41,6 @@ function Start() {
     } else {
       audio.pause();
     }
-
   }
 
   function handlePlay() {
@@ -126,10 +125,7 @@ function Start() {
 
 
   return (
-    <div className={`${showPlay === "main_page"
-      ? "menu_play_main_page"
-      : "container_menu_play"}`}
-    >
+    <div className="menu_play_main_page">
       {
         showPlay === "reproduction" ?
           <div className="container_menu_reproduction">

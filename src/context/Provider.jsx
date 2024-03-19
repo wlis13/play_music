@@ -14,6 +14,9 @@ function Provider({ children }) {
   const [totalTime, setTotalTime] = useState(0);
   const [showPlay, setShowPlay] = useState("main_page");
   const [startPlayBack, setStartPlayBack] = useState(false);
+  const [callJump, setCallJump] = useState(1);
+
+  const playBack = localStorage.getItem("playback");
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";
@@ -54,6 +57,31 @@ function Provider({ children }) {
   useEffect(() => {
     fetchMusics()
   }, [])
+
+  useEffect(() => {
+    const audio = document.getElementById("audio");
+    if (audio) {
+      if (playBack === "true") {
+        if (totalTime > 0) {
+          if (currentTime === totalTime) {
+            if (callJump === 1000) {
+              setCallJump(1);
+            }
+            setCallJump(callJump + 1);
+            if (callJump % 2 !== 0) {
+              if (clickedMusic < musics.length - 1) {
+                setClickedMusic(clickedMusic + 1);
+                audio.play();
+              } else {
+                setClickedMusic(0)
+                audio.play();
+              }
+            }
+          }
+        }
+      }
+    }
+  }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
 
   const providerValue = {
     fetchMusics,

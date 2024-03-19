@@ -1,5 +1,5 @@
 import returnIcon from "./image/arrow_for_down_white.png";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
 import Play from "./Play";
@@ -9,15 +9,12 @@ function PlayMusic() {
 
   const {
     clickedMusic,
-    setClickedMusic,
     musics,
     currentTime,
     totalTime,
     showPlay,
     handleInputValue,
   } = useContext(MyContext);
-  const playBack = localStorage.getItem("playback");
-  const [callJump, setCallJump] = useState(1);
 
   function formatterTime(time_seconds) {
     let minutes = Math.floor(time_seconds / 60);
@@ -46,31 +43,6 @@ function PlayMusic() {
       </div>
     )
   }
-
-  useEffect(() => {
-    const audio = document.getElementById("audio");
-    if (audio) {
-      if (playBack === "true") {
-        if (totalTime > 0) {
-          if (currentTime === totalTime) {
-            if (callJump === 1000) {
-              setCallJump(1);
-            }
-            setCallJump(callJump + 1);
-            if (callJump % 2 !== 0) {
-              if (clickedMusic < musics.length - 1) {
-                setClickedMusic(clickedMusic + 1);
-                audio.play();
-              } else {
-                setClickedMusic(0)
-                audio.play();
-              }
-            }
-          }
-        }
-      }
-    }
-  }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
 
   return (
     <div className={`container_manager_play_music ${showPlay !== "reproduction" ? "not_show" : ""}`}>

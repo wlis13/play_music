@@ -4,7 +4,7 @@ import iconFavicon from "./images/spotyfree_favidon.png";
 import ShowLoad from "../ShowLoad/showLoad";
 
 function ListMusics() {
-  const { musics, filteredPageLike, setClickedMusic, setShowPlay } = useContext(MyContext);
+  const { musics, filteredPageLike, setClickedMusic, setShowPlay, showPlay } = useContext(MyContext);
 
   function handleRoute(id) {
     setClickedMusic(musics.findIndex((music) => music._id === id));
@@ -15,7 +15,7 @@ function ListMusics() {
 
   return (
     <div
-      className={`container_manager_list_music`}
+      className={`container_manager_list_music ${showPlay === "list_like" ? "layout_like_page" : ""}`}
     >
       {musics.length > 0 ?
         musics.filter((item) => filteredPageLike ? item.like === true : item)
