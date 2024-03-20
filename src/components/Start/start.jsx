@@ -20,7 +20,8 @@ function Start() {
     setClickedMusic,
     showPlay,
     storageLikeList,
-    likeMusic
+    likeMusic,
+    isLike
   } = useContext(MyContext);
 
   const playBack = localStorage.getItem("playback");
@@ -53,7 +54,7 @@ function Start() {
   }
 
   function handleIndexNext(index) {
-    if (showPlay === "list_like") {
+    if (showPlay === "list_like" || isLike) {
       if (index < likeMusic.length - 1) {
         return true;
       } else {

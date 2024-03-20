@@ -15,7 +15,8 @@ function MainPage() {
     handleAudioValue,
     musics,
     likeMusic,
-    showPlay
+    showPlay,
+    isLike
   } = useContext(MyContext);
 
   const nowLike = showPlay === "list_like";
@@ -28,7 +29,7 @@ function MainPage() {
       <Audio
         audioRef={audioRef}
         isPlay={isPlay}
-        clickedMusic={nowLike ? likeMusic[clickedMusic]
+        clickedMusic={nowLike || isLike ? likeMusic[clickedMusic]
           : musics.length > 0 && musics[clickedMusic]}
         handleAudioValue={handleAudioValue}
       />

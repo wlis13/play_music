@@ -14,7 +14,8 @@ function PlayMusic() {
     totalTime,
     showPlay,
     handleInputValue,
-    storageLikeList,
+    isLike,
+    likeMusic
   } = useContext(MyContext);
 
   function formatterTime(time_seconds) {
@@ -51,7 +52,7 @@ function PlayMusic() {
         musics.length > 0 ?
           <Play
             returnIcon={returnIcon}
-            clickedMusic={showPlay === "list_like" ? storageLikeList[clickedMusic] : musics[clickedMusic]}
+            clickedMusic={showPlay === "list_like" || isLike ? likeMusic[clickedMusic] : musics[clickedMusic]}
             showTimeMusic={showTimeMusic}
           />
           : <ShowLoad />

@@ -71,7 +71,7 @@ function Provider({ children }) {
             }
             setCallJump(callJump + 1);
             if (callJump % 2 !== 0) {
-              if (showPlay === "list_like") {
+              if (showPlay === "list_like" || isLike) {
                 if (clickedMusic < likeMusic.length - 1) {
                   setClickedMusic(clickedMusic + 1);
                   audio.play();
@@ -93,17 +93,7 @@ function Provider({ children }) {
         }
       }
     }
-  }, [
-    callJump,
-    clickedMusic,
-    currentTime,
-    likeMusic.length,
-    musics.length,
-    playBack,
-    setClickedMusic,
-    showPlay,
-    totalTime
-  ]);
+  }, [callJump, clickedMusic, currentTime, isLike, likeMusic.length, musics.length, playBack, setClickedMusic, showPlay, totalTime]);
 
   const providerValue = {
     fetchMusics,
