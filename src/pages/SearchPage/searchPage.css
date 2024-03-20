@@ -46,17 +46,25 @@
 }
 
 .rockn_roll {
-  background-image: linear-gradient(rgb(155, 29, 29), rgb(87, 1, 1));
+  background-image: url("./images/background_rockn_roll.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .hip_hop {
-  background-image: linear-gradient(rgb(17, 124, 62), rgb(2, 36, 1));
+  background-image: url("./images/background_hip_hop.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .crista {
-  background-image: linear-gradient(rgb(37, 4, 80), rgb(6, 89, 243));
+  background-image: url("./images/background_crista.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .reggae {
-  background-image: linear-gradient(rgb(209, 195, 2), rgb(1, 37, 1), rgb(1, 37, 1), rgb(197, 0, 0));
+  background-image: url("./images/background_reggae.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
