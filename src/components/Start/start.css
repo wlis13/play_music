@@ -2,10 +2,6 @@
   --length-title: 170px;
 }
 
-:focus {
-  outline: none;
-}
-
 .container_menu_reproduction {
   background-color: rgb(71, 71, 71);
   width: 100%;
@@ -21,6 +17,10 @@
   width: 5%;
   height: 5%;
   cursor: pointer;
+}
+
+.container_menu_reproduction img:focus {
+  outline: none;
 }
 
 .container_menu_main_page {
@@ -39,6 +39,10 @@
   height: 5%;
   cursor: pointer;
   margin-right: 15px;
+}
+
+.container_menu_main_page img:focus {
+  outline: none;
 }
 
 #container_title_main_page {

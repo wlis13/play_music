@@ -12,11 +12,13 @@ function ListMusics() {
     showPlay,
     storageLikeList,
     isLike,
-    likeMusic
+    likeMusic,
+    setIsPlay
   } = useContext(MyContext);
 
 
   function handleRoute(id) {
+    setIsPlay(true);
     if (showPlay === "list_like" || isLike) {
       setClickedMusic(likeMusic.findIndex((music) => music._id === id));
       setShowPlay("reproduction");

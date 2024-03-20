@@ -6,7 +6,7 @@ function Provider({ children }) {
 
   const [musics, setMusics] = useState([]);
   const [clickedMusic, setClickedMusic] = useState(0);
-  const [isPlay, setIsPlay] = useState(true);
+  const [isPlay, setIsPlay] = useState(false);
   const [filteredPageLike, setFilteredPageLike] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const audioRef = useRef(null);
