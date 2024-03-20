@@ -1,4 +1,4 @@
-import initialImage from "./images/initial_window.gif";
+import initialImage from "./images/initial_image02.gif";
 import "./showLoad.css";
 
 function ShowLoad() {

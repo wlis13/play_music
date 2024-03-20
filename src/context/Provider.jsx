@@ -29,7 +29,9 @@ function Provider({ children }) {
       }
     });
     const response = await promise.json();
-    setMusics(response);
+    setTimeout(() => {
+      setMusics(response);
+    }, 2000);
   }
 
   async function fetchUpdateLike(music) {
