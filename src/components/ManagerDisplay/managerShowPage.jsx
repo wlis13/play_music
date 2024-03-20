@@ -4,6 +4,7 @@ import MyContext from "../../context/context";
 import PlayMusic from "../../pages/PlayMusic/playMusic";
 import ListMusics from "./listMusic";
 import ListLike from "../ListLike/listLike";
+import SearchPage from "../../pages/SearchPage/searchPage";
 
 function ManagerShowPage() {
 
@@ -25,6 +26,10 @@ function ManagerShowPage() {
     } else if (showPlay === "list_like") {
       return (
         <ListLike />
+      )
+    } else if (showPlay === "search_play") {
+      return (
+        <SearchPage />
       )
     }
   }

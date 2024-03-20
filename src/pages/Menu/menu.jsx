@@ -4,10 +4,10 @@ import likeIcon from "./images/like.png";
 import notLikeIcon from "./images/not_like.png";
 import spotyfreeIcon from "./images/spotyfree_logo.png";
 import { useContext } from "react";
-import "./header.css";
+import "./menu.css";
 import MyContext from "../../context/context";
 
-function Header() {
+function Menu() {
 
   const {
     setFilteredPageLike,
@@ -46,16 +46,22 @@ function Header() {
     setShowPlay("main_page");
   }
 
+  function handleSearch() {
+    setShowPlay("search_play");
+  }
+
   function handleClick(name) {
     if (name === "handleLike") {
-      handleLike()
+      handleLike();
     } else if (name === "home") {
       handleHome();
+    } else if (name === "search") {
+      handleSearch();
     }
   }
 
   return (
-    <div className="container_manager_header">
+    <div className="container_manager_menu">
       {
         listIcons.map((icon) => (
           <section
@@ -75,4 +81,4 @@ function Header() {
     </div>
   );
 }
-export default Header;
+export default Menu;

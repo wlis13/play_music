@@ -1,0 +1,60 @@
+.container_section_search_page {
+  position: relative;
+  background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#input_search {
+  padding: 10px 5px;
+  font-size: 13pt;
+  font-weight: 600;
+  color: black;
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
+
+#input_search:focus {
+  outline: none;
+}
+
+#search_image {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  width: 30px;
+}
+
+#hide_icon {
+  display: none;
+}
+
+.categories {
+  padding: 30px 20px;
+  margin: 10px 0px;
+  margin-left: 10px;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.anos_80 {
+  background-image: linear-gradient(rgb(78, 1, 31), rgb(219, 0, 110));
+}
+
+.rockn_roll {
+  background-image: linear-gradient(rgb(155, 29, 29), rgb(87, 1, 1));
+}
+
+.hip_hop {
+  background-image: linear-gradient(rgb(17, 124, 62), rgb(2, 36, 1));
+}
+
+.crista {
+  background-image: linear-gradient(rgb(37, 4, 80), rgb(6, 89, 243));
+}
+
+.reggae {
+  background-image: linear-gradient(rgb(209, 195, 2), rgb(1, 37, 1), rgb(1, 37, 1), rgb(197, 0, 0));
+}

@@ -1,10 +1,10 @@
-import Header from "../Header/header";
 import Start from "../../components/Start/start";
 import ManagerShowPage from "../../components/ManagerDisplay/managerShowPage";
-import "./mainPage.css";
 import Audio from "../../components/Audio/audio";
 import { useContext } from "react";
 import MyContext from "../../context/context";
+import Menu from "../Menu/menu";
+import "./mainPage.css";
 
 function MainPage() {
 
@@ -25,7 +25,7 @@ function MainPage() {
     <div className="container_manager_main_page">
       <ManagerShowPage />
       <Start />
-      <Header />
+      <Menu />
       <Audio
         audioRef={audioRef}
         isPlay={isPlay}
