@@ -26,7 +26,7 @@ function Start() {
 
   const playBack = localStorage.getItem("playback");
 
-  const verifyLikeStorage = showPlay === "list_like" && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id);
+  const verifyLikeStorage = showPlay === "list_like" || isLike && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id);
 
   const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
 

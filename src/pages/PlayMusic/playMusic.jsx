@@ -54,6 +54,7 @@ function PlayMusic() {
             returnIcon={returnIcon}
             clickedMusic={showPlay === "list_like" || isLike ? likeMusic[clickedMusic] : musics[clickedMusic]}
             showTimeMusic={showTimeMusic}
+            isLike={isLike}
           />
           : <ShowLoad />
       }

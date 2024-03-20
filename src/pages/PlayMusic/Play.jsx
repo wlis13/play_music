@@ -6,6 +6,7 @@ function Play({
   returnIcon,
   clickedMusic,
   showTimeMusic,
+  isLike
 }) {
 
   const { setFilteredPageLike, setShowPlay } = useContext(MyContext);
@@ -22,7 +23,11 @@ function Play({
   handleAnimation();
 
   function handleGoBack() {
-    setShowPlay("main_page")
+    if (isLike) {
+      setShowPlay("list_like");
+    } else {
+      setShowPlay("main_page");
+    }
     setFilteredPageLike(false);
   }
 
@@ -31,16 +36,16 @@ function Play({
       <header className="container_header_play_music">
         <img onClick={handleGoBack} src={returnIcon} alt="voltar para a página anterior" />
         <div id="container_text_description">
-          <span id="text_description">{clickedMusic.description}</span>
+          <span id="text_description">{clickedMusic && clickedMusic.description}</span>
         </div>
       </header>
       <img
         id="image_play_music"
-        src={clickedMusic.image}
-        alt={clickedMusic.title}
+        src={clickedMusic && clickedMusic.image}
+        alt={clickedMusic && clickedMusic.title}
       />
       {showTimeMusic()}
-      <h2>{clickedMusic.title}</h2>
+      <h2>{clickedMusic && clickedMusic.title}</h2>
     </div>
   );
 }
@@ -49,6 +54,7 @@ Play.propTypes = {
   returnIcon: PropTypes.string.isRequired,
   clickedMusic: PropTypes.object.isRequired,
   showTimeMusic: PropTypes.func.isRequired,
+  isLike: PropTypes.bool.isRequired,
 }
 
 export default Play;
