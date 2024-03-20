@@ -12,7 +12,7 @@ function SearchPage() {
     { name: "reggae", className: "reggae" },
   ]
 
-  const [hideSearchIcon, setHideSearchIcon] = useState(false);
+  const [hideSearchIcon, setHideSearchIcon] = useState(true);
 
   function handleHideIcon({ target }) {
     const { value } = target;

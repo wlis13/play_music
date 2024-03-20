@@ -11,7 +11,7 @@
   font-size: 13pt;
   font-weight: 600;
   color: black;
-  width: 90%;
+  width: 85%;
   margin-left: 10px;
   margin-bottom: 15px;
 }
@@ -22,7 +22,7 @@
 
 #search_image {
   position: absolute;
-  top: 15px;
+  top: 18px;
   left: 30px;
   width: 30px;
 }
@@ -40,7 +40,9 @@
 }
 
 .anos_80 {
-  background-image: linear-gradient(rgb(78, 1, 31), rgb(219, 0, 110));
+  background-image: url("./images/anot_80_background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .rockn_roll {
