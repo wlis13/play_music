@@ -2,22 +2,21 @@ import { useContext, useEffect } from "react";
 import MyContext from "../../context/context";
 import goBackImage from "./images/arrow_for_down_white.png";
 import "./listLike.css";
-import { useHistory } from "react-router-dom";
 import ListMusics from "../ManagerDisplay/listMusic";
 
 function ListLike() {
 
-  const history = useHistory();
   const {
     setFilteredPageLike,
     setIsLike,
     showPlay,
+    setShowPlay
   } = useContext(MyContext);
 
   function goBackListLike() {
-    history.goBack();
     setFilteredPageLike(false);
     setIsLike(false);
+    setShowPlay("main_page");
   }
 
   useEffect(() => {
