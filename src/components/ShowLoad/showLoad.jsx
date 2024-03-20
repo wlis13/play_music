@@ -1,12 +1,11 @@
-import imageLoading from "./images/loadImage.gif";
+import initialImage from "./images/initial_window.gif";
 import "./showLoad.css";
 
 function ShowLoad() {
   return (
-    <aside className="container-show-loading">
-      <img src={imageLoading} alt="ícone de carregando" />
-      <p>Aguarde...</p>
-    </aside>
+    <div className="container-show-loading">
+      <img id="initial_image" src={initialImage} alt="Imagem de carregamento" />
+    </div>
   );
 }
 export default ShowLoad;
