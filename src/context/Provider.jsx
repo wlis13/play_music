@@ -71,19 +71,39 @@ function Provider({ children }) {
             }
             setCallJump(callJump + 1);
             if (callJump % 2 !== 0) {
-              if (clickedMusic < musics.length - 1) {
-                setClickedMusic(clickedMusic + 1);
-                audio.play();
+              if (showPlay === "list_like") {
+                if (clickedMusic < likeMusic.length - 1) {
+                  setClickedMusic(clickedMusic + 1);
+                  audio.play();
+                } else {
+                  setClickedMusic(0)
+                  audio.play();
+                }
               } else {
-                setClickedMusic(0)
-                audio.play();
+                if (clickedMusic < musics.length - 1) {
+                  setClickedMusic(clickedMusic + 1);
+                  audio.play();
+                } else {
+                  setClickedMusic(0)
+                  audio.play();
+                }
               }
             }
           }
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, musics.length, playBack, setClickedMusic, totalTime]);
+  }, [
+    callJump,
+    clickedMusic,
+    currentTime,
+    likeMusic.length,
+    musics.length,
+    playBack,
+    setClickedMusic,
+    showPlay,
+    totalTime
+  ]);
 
   const providerValue = {
     fetchMusics,
