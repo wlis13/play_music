@@ -34,7 +34,7 @@ function ListMusics() {
     <div
       className={`container_manager_list_music ${showPlay === "list_like" || isLike ? "layout_like_page" : ""}`}
     >
-      {musics.length > 0 ?
+      {musics.length < 0 ?
         musics.filter((item) => showPlay === "list_like" || isLike ? storageLikeList.includes(item._id) : item)
           .slice(!filteredPageLike && 0, 8)
           .map((music) => (
