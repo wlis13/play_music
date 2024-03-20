@@ -76,18 +76,19 @@ function Provider({ children }) {
               if (showPlay === "list_like" || isLike) {
                 if (clickedMusic < likeMusic.length - 1) {
                   setClickedMusic(clickedMusic + 1);
-                  audio.play();
+                  audio.load() && audio.play();
+
                 } else {
                   setClickedMusic(0)
-                  audio.play();
+                  audio.load() && audio.play();
                 }
               } else {
                 if (clickedMusic < musics.length - 1) {
                   setClickedMusic(clickedMusic + 1);
-                  audio.play();
+                  audio.load() && audio.play();
                 } else {
                   setClickedMusic(0)
-                  audio.play();
+                  audio.load() && audio.play();
                 }
               }
             }

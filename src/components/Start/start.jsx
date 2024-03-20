@@ -40,7 +40,6 @@ function Start() {
 
   function handlePlayAudio() {
     const audio = document.getElementById("audio");
-
     if (audio.paused) {
       setIsPlay(true);
       audio.play();

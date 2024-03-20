@@ -23,12 +23,12 @@ function ListMusics() {
       setClickedMusic(likeMusic.findIndex((music) => music._id === id));
       setShowPlay("reproduction");
       const audio = document.getElementById("audio");
-      audio.play();
+      audio.paused && audio.play();
     } else {
       setClickedMusic(musics.findIndex((music) => music._id === id));
       setShowPlay("reproduction");
       const audio = document.getElementById("audio");
-      audio.play();
+      audio.paused && audio.play();
     }
   }
 
