@@ -15,6 +15,7 @@ function Provider({ children }) {
   const [showPlay, setShowPlay] = useState("main_page");
   const [startPlayBack, setStartPlayBack] = useState(false);
   const [callJump, setCallJump] = useState(1);
+  const [likeMusic, setLikeMusic] = useState([]);
 
   const playBack = localStorage.getItem("playback");
   const storageLikeList = localStorage.getItem("listLike") || [];
@@ -105,7 +106,9 @@ function Provider({ children }) {
     startPlayBack,
     setStartPlayBack,
     handleInputValue,
-    storageLikeList
+    storageLikeList,
+    likeMusic,
+    setLikeMusic
   }
 
   return (

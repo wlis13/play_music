@@ -19,11 +19,13 @@ function Start() {
     setIsPlay,
     setClickedMusic,
     showPlay,
+    storageLikeList,
+    likeMusic
   } = useContext(MyContext);
+
   const playBack = localStorage.getItem("playback");
 
-  const storageLikeList = localStorage.getItem("listLike") || [];
-  const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
+  const verifyLike = showPlay === "list_like" && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id)
 
   const listIcons = [
     { name: "handleLike", default: verifyLike ? like : notLike },
@@ -49,10 +51,18 @@ function Start() {
   }
 
   function handleIndexNext(index) {
-    if (index < musics.length - 1) {
-      return true;
+    if (showPlay === "list_like") {
+      if (index < likeMusic.length - 1) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      if (index < musics.length - 1) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
@@ -143,7 +153,7 @@ function Start() {
           :
           <div className="container_menu_main_page">
             <div id="container_title_main_page">
-              <p id="title_menu_main_page">{musics.length > 0 && musics[clickedMusic].title}</p>
+              <p id="title_menu_main_page">{showPlay === "list_like" ? likeMusic[clickedMusic].title : musics.length > 0 && musics[clickedMusic].title}</p>
             </div>
             {
               listIcons.filter((item) => musics.length > 0 &&

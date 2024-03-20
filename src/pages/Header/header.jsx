@@ -9,7 +9,17 @@ import MyContext from "../../context/context";
 
 function Header() {
 
-  const { setFilteredPageLike, isLike, setIsLike, setShowPlay } = useContext(MyContext);
+  const {
+    setFilteredPageLike,
+    isLike,
+    setIsLike,
+    setShowPlay,
+    musics,
+    storageLikeList,
+    setLikeMusic,
+    likeMusic,
+    setClickedMusic
+  } = useContext(MyContext);
 
   const listIcons = [
     { name: "home", default: homeIcon, title: "Início" },
@@ -19,6 +29,12 @@ function Header() {
   ]
 
   function handleLike() {
+    const filtered = musics.filter((music) => storageLikeList.includes(music._id));
+    setLikeMusic(filtered);
+    if (likeMusic.length > 0) {
+      setClickedMusic(likeMusic.findIndex((music) => storageLikeList
+        .includes(music._id)));
+    }
     setFilteredPageLike(true);
     setIsLike(true);
     setShowPlay("list_like");

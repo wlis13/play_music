@@ -8,7 +8,11 @@ import ListMusics from "../ManagerDisplay/listMusic";
 function ListLike() {
 
   const history = useHistory();
-  const { setFilteredPageLike, setIsLike, showPlay } = useContext(MyContext);
+  const {
+    setFilteredPageLike,
+    setIsLike,
+    showPlay,
+  } = useContext(MyContext);
 
   function goBackListLike() {
     history.goBack();
