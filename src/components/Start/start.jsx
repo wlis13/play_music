@@ -42,8 +42,10 @@ function Start() {
     const audio = document.getElementById("audio");
 
     if (audio.paused) {
+      setIsPlay(true);
       audio.play();
     } else {
+      setIsPlay(false);
       audio.pause();
     }
   }
@@ -156,7 +158,7 @@ function Start() {
           :
           <div className="container_menu_main_page">
             <div id="container_title_main_page">
-              <p id="title_menu_main_page">{showPlay === "list_like" ? likeMusic[clickedMusic].title : musics.length > 0 && musics[clickedMusic].title}</p>
+              <p id="title_menu_main_page">{showPlay === "list_like" || isLike ? likeMusic[clickedMusic].title : musics.length > 0 && musics[clickedMusic].title}</p>
             </div>
             {
               listIcons.filter((item) => musics.length > 0 &&

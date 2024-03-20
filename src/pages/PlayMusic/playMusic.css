@@ -33,7 +33,7 @@
   position: relative;
   display: inline-block;
   white-space: nowrap;
-  animation: handleText 20s linear infinite;
+  animation: handleText 25s linear infinite;
 }
 
 @keyframes handleText {
