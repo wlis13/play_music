@@ -25,10 +25,12 @@ function Start() {
 
   const playBack = localStorage.getItem("playback");
 
-  const verifyLike = showPlay === "list_like" && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id)
+  const verifyLikeStorage = showPlay === "list_like" && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id);
+
+  const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
 
   const listIcons = [
-    { name: "handleLike", default: verifyLike ? like : notLike },
+    { name: "handleLike", default: verifyLikeStorage || verifyLike ? like : notLike },
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
