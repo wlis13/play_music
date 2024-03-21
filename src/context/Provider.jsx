@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 function Provider({ children }) {
 
   const [musics, setMusics] = useState([]);
+  const [matrixMusic, setMatrixMusic] = useState();
   const [clickedMusic, setClickedMusic] = useState(0);
   const [isPlay, setIsPlay] = useState(false);
   const [filteredPageLike, setFilteredPageLike] = useState(false);
@@ -35,7 +36,13 @@ function Provider({ children }) {
     });
     const response = await promise.json();
     setTimeout(() => {
+      const groups = [];
+      for (let index = 0; index < response.length; index += 6) {
+        groups.push(response.slice(index, index + 6))
+      }
+      setMatrixMusic(groups)
       setMusics(response);
+      console.log(groups)
     }, 2000);
   }
 
@@ -106,6 +113,7 @@ function Provider({ children }) {
   const providerValue = {
     fetchMusics,
     musics,
+    matrixMusic,
     clickedMusic,
     setClickedMusic,
     isPlay,

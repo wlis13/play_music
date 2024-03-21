@@ -1,10 +1,17 @@
 .container_manager_list_music {
+  display: flex;
+  justify-content: space-around;
+  max-height: 650px;
+  background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
   width: 100%;
+}
+
+.container_list_musics {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  min-height: 600px;
-  background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
+  width: 100%;
 }
 
 .not_showing_list_music {
@@ -12,29 +19,29 @@
 }
 
 .container_manager_list_music section {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 160px;
   text-align: center;
-  padding: 8px 0px;
   height: 200px;
 }
 
 .image_music {
-  position: relative;
+  position: static;
   top: 0px;
   width: 80%;
-  height: 150px;
+  height: 120px;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 
 .icon_aside {
   position: absolute;
-  top: 12px;
-  left: 20px;
+  bottom: 80px;
+  right: 20px;
   width: 15px;
   height: 15px;
 }
@@ -54,8 +61,7 @@
 /* formattetion for like page */
 
 .layout_like_page {
-  display: block;
-  min-height: 570px;
+  min-height: 560px;
 }
 
 .layout_like_page section {
