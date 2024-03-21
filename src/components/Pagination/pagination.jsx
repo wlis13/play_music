@@ -35,7 +35,7 @@ function Pagination() {
         alt="página anterior"
         onClick={() => { paginationed("prev") }}
       />
-      <h3>{`Pag ${paginationControl.count}`}</h3>
+      <h1>{`${paginationControl.count}`}</h1>
       <img
         id="next_pagination"
         src={paginationImage}
