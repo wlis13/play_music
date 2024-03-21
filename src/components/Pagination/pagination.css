@@ -1,0 +1,16 @@
+.container_manager_pagination {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0px;
+}
+
+#prev_pagination {
+  rotate: 180deg;
+  width: 40px;
+}
+
+#next_pagination {
+  width: 40px;
+}

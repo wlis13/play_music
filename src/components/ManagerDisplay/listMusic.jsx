@@ -2,6 +2,7 @@ import { useContext } from "react";
 import MyContext from "../../context/context";
 import iconFavicon from "./images/spotyfree_favidon.png";
 import ShowLoad from "../ShowLoad/showLoad";
+import Pagination from "../Pagination/pagination";
 
 function ListMusics() {
   const {
@@ -13,7 +14,8 @@ function ListMusics() {
     storageLikeList,
     isLike,
     likeMusic,
-    setIsPlay
+    setIsPlay,
+    paginationControl
   } = useContext(MyContext);
 
 
@@ -38,7 +40,7 @@ function ListMusics() {
     >
       {musics.length > 0 ?
         musics.filter((item) => showPlay === "list_like" || isLike ? storageLikeList.includes(item._id) : item)
-          .slice(!filteredPageLike && 0, 8)
+          .slice(!filteredPageLike && paginationControl.init, paginationControl.end)
           .map((music) => (
             <section
               onClick={() => { handleRoute(music._id) }}
@@ -60,6 +62,7 @@ function ListMusics() {
           ))
         : <ShowLoad />
       }
+      <Pagination />
     </div>
   );
 }
