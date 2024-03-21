@@ -1,10 +1,12 @@
 .container_manager_menu {
+  position: fixed;
   background-color: rgb(71, 71, 71);
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid rgb(231, 231, 231);
+  bottom: 0%;
 }
 
 .container_image_title {

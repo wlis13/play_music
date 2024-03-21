@@ -23,8 +23,10 @@ function MainPage() {
 
   return (
     <div className="container_manager_main_page">
-      <ManagerShowPage />
-      <Start />
+      <div className="container_show_page_and_start">
+        <ManagerShowPage />
+        <Start />
+      </div>
       <Menu />
       <Audio
         audioRef={audioRef}
