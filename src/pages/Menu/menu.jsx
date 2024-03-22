@@ -18,7 +18,7 @@ function Menu() {
     storageLikeList,
     setLikeMusic,
     likeMusic,
-    setClickedMusic
+    setClickedMusic,
   } = useContext(MyContext);
 
   const listIcons = [
