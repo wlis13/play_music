@@ -3,8 +3,11 @@
 }
 
 .container_manager_play_music {
+  position: relative;
   height: 100%;
   background-color: rgb(71, 71, 71);
+  bottom: 55px;
+  margin-top: 55px;
 }
 
 .not_show {

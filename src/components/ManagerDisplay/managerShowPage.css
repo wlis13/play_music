@@ -1,13 +1,16 @@
 .container_manager_list_music {
+  position: relative;
   display: flex;
   justify-content: space-around;
-  max-height: 650px;
+  height: 100%;
   background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
   width: 100%;
+  margin-top: 55px;
+  bottom: 55px;
+  padding-top: 10px;
 }
 
 .container_list_musics {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -19,19 +22,15 @@
 }
 
 .container_manager_list_music section {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 160px;
   text-align: center;
-  height: 200px;
 }
 
 .image_music {
-  position: static;
-  top: 0px;
   width: 80%;
   height: 120px;
   margin-top: 0px;
