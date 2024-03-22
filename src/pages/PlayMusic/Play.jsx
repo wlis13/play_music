@@ -26,7 +26,7 @@ function Play({
     if (isLike) {
       setShowPlay("list_like");
     } else if (isCategory) {
-      setShowPlay("search_play");
+      setShowPlay("category_music");
     } else {
       setShowPlay("main_page");
     }
