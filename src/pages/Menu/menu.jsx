@@ -17,7 +17,6 @@ function Menu() {
     musics,
     storageLikeList,
     setLikeMusic,
-    likeMusic,
     setClickedMusic,
   } = useContext(MyContext);
 
@@ -31,8 +30,8 @@ function Menu() {
   function handleLike() {
     const filtered = musics.filter((music) => storageLikeList.includes(music._id));
     setLikeMusic(filtered);
-    if (likeMusic.length > 0) {
-      setClickedMusic(likeMusic.findIndex((music) => storageLikeList
+    if (filtered.length > 0) {
+      setClickedMusic(filtered.findIndex((music) => storageLikeList
         .includes(music._id)));
     }
     setFilteredPageLike(true);
