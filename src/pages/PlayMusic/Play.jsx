@@ -9,7 +9,7 @@ function Play({
   isLike
 }) {
 
-  const { setFilteredPageLike, setShowPlay, isCategory } = useContext(MyContext);
+  const { setFilteredPageLike, setShowPlay, isCategory, setIsPlay } = useContext(MyContext);
 
   function handleAnimation() {
     let root = document.documentElement;
@@ -29,6 +29,7 @@ function Play({
       setShowPlay("category_music");
     } else {
       setShowPlay("main_page");
+      setIsPlay(false);
     }
     setFilteredPageLike(false);
   }

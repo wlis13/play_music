@@ -4,13 +4,15 @@ import { useContext } from "react";
 import MyContext from "../../context/context";
 
 function Header() {
-  const { setShowPlay, showPlay } = useContext(MyContext);
+  const { setShowPlay, showPlay, setIsCategory, setIsPlay } = useContext(MyContext);
 
   function handleGoBack() {
     if (showPlay === "category_music") {
       setShowPlay("search_play");
     } else {
       setShowPlay("main_page");
+      setIsCategory(false);
+      setIsPlay(false);
     }
 
 

@@ -6,7 +6,7 @@ import MyContext from "../../context/context";
 
 function SearchPage() {
 
-  const { musics, setIsLike, setShowPlay, setClickedMusic } = useContext(MyContext);
+  const { musics, setIsLike, setShowPlay, setClickedMusic, setIsPlay } = useContext(MyContext);
 
   const listCategories = [
     { name: "anos 80", className: "anos_80" },
@@ -70,6 +70,7 @@ function SearchPage() {
                 setShowPlay("category_music");
                 setIsLike(false);
                 setClickedMusic(0);
+                setIsPlay(false);
               }}
             >
               <h2>{category.name}</h2>

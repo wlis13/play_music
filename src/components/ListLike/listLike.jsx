@@ -10,12 +10,14 @@ function ListLike() {
     setFilteredPageLike,
     setIsLike,
     showPlay,
-    setShowPlay
+    setShowPlay,
+    setIsPlay
   } = useContext(MyContext);
 
   function goBackListLike() {
     setFilteredPageLike(false);
     setIsLike(false);
+    setIsPlay(false);
     setShowPlay("main_page");
   }
 
