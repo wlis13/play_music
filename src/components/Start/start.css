@@ -31,8 +31,7 @@
   position: relative;
   background-color: rgb(71, 71, 71);
   width: 100%;
-  height: 20%;
-  min-height: 72px;
+  height: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
