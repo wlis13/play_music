@@ -25,6 +25,7 @@ function Start() {
   } = useContext(MyContext);
 
   const playBack = localStorage.getItem("playback");
+  const audio = document.getElementById("audio");
 
   const verifyLikeStorage = showPlay === "list_like" || isLike && musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id);
 
@@ -81,15 +82,24 @@ function Start() {
   function handleNextAndPrev(alt) {
     if (alt === "next") {
       if (handleIndexNext(clickedMusic)) {
-        setClickedMusic(clickedMusic + 1)
+        setClickedMusic(clickedMusic + 1);
+        audio.load() && audio.play();
       } else {
-        setClickedMusic(0)
+        setClickedMusic(0);
+        audio.load() && audio.play();
       }
     } else if (alt === "prev") {
       if (handleIndexPrev(clickedMusic)) {
-        setClickedMusic(clickedMusic - 1)
+        setClickedMusic(clickedMusic - 1);
+        audio.load() && audio.play();
       } else {
-        setClickedMusic(musics.length - 1)
+        if (showPlay === "list_like" || isLike) {
+          setClickedMusic(likeMusic.length - 1);
+          audio.load() && audio.play();
+        } else {
+          setClickedMusic(musics.length - 1);
+          audio.load() && audio.play();
+        }
       }
     }
   }

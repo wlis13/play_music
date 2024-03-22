@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import MyContext from "../../context/context";
 import iconFavicon from "./images/spotyfree_favidon.png";
-import ShowLoad from "../ShowLoad/showLoad";
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
 import Hammer from "hammerjs";
@@ -9,7 +8,6 @@ import Hammer from "hammerjs";
 function ListMusics() {
   const {
     musics,
-    // filteredPageLike,
     setClickedMusic,
     setShowPlay,
     showPlay,
@@ -18,7 +16,6 @@ function ListMusics() {
     likeMusic,
     setIsPlay,
     matrixMusic
-    // paginationControl
   } = useContext(MyContext);
 
   const carouselRef = useRef(null);
@@ -54,7 +51,6 @@ function ListMusics() {
     return () => {
       hammer.destroy();
     }
-
   }, [])
 
   return (
@@ -62,14 +58,13 @@ function ListMusics() {
       ref={carouselRef}
       className={`container_manager_list_music ${showPlay === "list_like" || isLike ? "layout_like_page" : ""}`}
     >
-
       <Carousel
         controls={false}
         interval={null}
         indicators={false}
       >
         {
-          musics.length > 0 ? matrixMusic.map((music) => (
+          matrixMusic.map((music) => (
             <Carousel.Item key={music.title}>
               <div
                 className="container_list_musics"
@@ -102,7 +97,6 @@ function ListMusics() {
               </div>
             </Carousel.Item>
           ))
-            : <ShowLoad />
         }
       </Carousel>
     </div>

@@ -42,7 +42,6 @@ function Provider({ children }) {
       }
       setMatrixMusic(groups)
       setMusics(response);
-      console.log(groups)
     }, 2000);
   }
 
