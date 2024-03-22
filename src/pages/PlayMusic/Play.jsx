@@ -9,7 +9,7 @@ function Play({
   isLike
 }) {
 
-  const { setFilteredPageLike, setShowPlay } = useContext(MyContext);
+  const { setFilteredPageLike, setShowPlay, isCategory } = useContext(MyContext);
 
   function handleAnimation() {
     let root = document.documentElement;
@@ -25,6 +25,8 @@ function Play({
   function handleGoBack() {
     if (isLike) {
       setShowPlay("list_like");
+    } else if (isCategory) {
+      setShowPlay("search_play");
     } else {
       setShowPlay("main_page");
     }
