@@ -21,7 +21,10 @@ function Start() {
     showPlay,
     storageLikeList,
     likeMusic,
-    isLike
+    isLike,
+    matrixToList,
+    filteredCategory,
+    isCategory
   } = useContext(MyContext);
 
   const playBack = localStorage.getItem("playback");
@@ -62,6 +65,12 @@ function Start() {
       } else {
         return false;
       }
+    } else if (isCategory) {
+      if (index < matrixToList(filteredCategory).length - 1) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       if (index < musics.length - 1) {
         return true;
@@ -83,22 +92,25 @@ function Start() {
     if (alt === "next") {
       if (handleIndexNext(clickedMusic)) {
         setClickedMusic(clickedMusic + 1);
-        audio.load() && audio.play();
+        audio.play();
       } else {
         setClickedMusic(0);
-        audio.load() && audio.play();
+        audio.play();
       }
     } else if (alt === "prev") {
       if (handleIndexPrev(clickedMusic)) {
         setClickedMusic(clickedMusic - 1);
-        audio.load() && audio.play();
+        audio.play();
       } else {
         if (showPlay === "list_like" || isLike) {
           setClickedMusic(likeMusic.length - 1);
-          audio.load() && audio.play();
+          audio.play();
+        } else if (isCategory) {
+          setClickedMusic(matrixToList(filteredCategory).length - 1);
+          audio.play();
         } else {
           setClickedMusic(musics.length - 1);
-          audio.load() && audio.play();
+          audio.play();
         }
       }
     }

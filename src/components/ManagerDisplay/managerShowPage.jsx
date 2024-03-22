@@ -6,6 +6,7 @@ import ListLike from "../ListLike/listLike";
 import SearchPage from "../../pages/SearchPage/searchPage";
 import "./managerShowPage.css";
 import ShowLoad from "../ShowLoad/showLoad";
+import CategoryMusic from "./CategoryMusic/categoryMusic";
 
 function ManagerShowPage() {
 
@@ -33,6 +34,10 @@ function ManagerShowPage() {
     } else if (showPlay === "search_play") {
       return (
         <SearchPage />
+      )
+    } else if (showPlay === "category_music") {
+      return (
+        <CategoryMusic />
       )
     }
   }

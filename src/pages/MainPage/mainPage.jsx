@@ -11,15 +11,9 @@ function MainPage() {
   const {
     audioRef,
     isPlay,
-    clickedMusic,
     handleAudioValue,
-    musics,
-    likeMusic,
-    showPlay,
-    isLike
+    returnListFiltered
   } = useContext(MyContext);
-
-  const nowLike = showPlay === "list_like";
 
   return (
     <div className="container_manager_main_page">
@@ -31,8 +25,7 @@ function MainPage() {
       <Audio
         audioRef={audioRef}
         isPlay={isPlay}
-        clickedMusic={nowLike || isLike ? likeMusic[clickedMusic]
-          : musics.length > 0 && musics[clickedMusic]}
+        clickedMusic={returnListFiltered()}
         handleAudioValue={handleAudioValue}
       />
     </div>

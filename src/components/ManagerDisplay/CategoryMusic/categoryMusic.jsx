@@ -4,17 +4,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
 import Hammer from "hammerjs";
 import MyContext from "../../../context/context";
-import "./likeList.css";
+import "./categoryMusic.css";
 
-function LikeList() {
+function CategoryMusic() {
 
   const {
     setClickedMusic,
     setShowPlay,
-    storageLikeList,
-    likeMusic,
     setIsPlay,
-    matrixMusic,
+    filteredCategory,
     setIsLike,
     setIsCategory
   } = useContext(MyContext);
@@ -22,34 +20,15 @@ function LikeList() {
   const carouselRef = useRef(null);
 
   function handleRoute(id) {
+    setIsLike(false);
+    setIsCategory(true);
     setIsPlay(true);
-    setIsLike(true);
-    setIsCategory(false);
-    setClickedMusic(likeMusic.findIndex((music) => music._id === id));
+    filteredCategory.forEach((item) => {
+      setClickedMusic(item.findIndex((music) => music._id === id));
+    })
     setShowPlay("reproduction");
     const audio = document.getElementById("audio");
-    audio.paused && audio.play();
-  }
-
-  function returnFormattedMatrix() {
-    const newMatrix = [];
-    let newList = [];
-
-    matrixMusic.forEach((list) => {
-      list.forEach((element) => {
-        if (storageLikeList.includes(element._id)) {
-          newList.push(element);
-          if (newList.length === 6) {
-            newMatrix.push(newList);
-            newList = [];
-          }
-        }
-      });
-    })
-
-    newMatrix.push(newList);
-
-    return newMatrix;
+    audio.load() && audio.play();
   }
 
   useEffect(() => {
@@ -80,11 +59,12 @@ function LikeList() {
         indicators={false}
       >
         {
-          returnFormattedMatrix().map((music, index) => (
+          filteredCategory.map((music, index) => (
             <Carousel.Item key={index}>
               <div
-                className="container_list_musics"
+                className="container_list_category"
               >
+                <h1>category music</h1>
                 {
                   music.map((ms) => (
                     <section
@@ -97,14 +77,14 @@ function LikeList() {
                           backgroundSize: "100% 100%",
                           backgroundRepeat: "no-repeat"
                         }}
-                        className="image_music_like_page"
+                        className="image_music_category"
                       >
-                        <img className="icon_aside_like_page"
+                        <img className="icon_aside_category"
                           src={iconFavicon}
                           alt="apotyfree"
                         />
                       </div>
-                      <aside className="title_and_category_like_page">
+                      <aside className="title_and_category_category">
                         <h2>{ms.title}</h2>
                         <h3>{ms.category}</h3>
                       </aside>
@@ -119,4 +99,4 @@ function LikeList() {
     </div>
   );
 }
-export default LikeList;
+export default CategoryMusic;

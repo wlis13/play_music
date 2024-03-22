@@ -10,6 +10,7 @@ function Provider({ children }) {
   const [isPlay, setIsPlay] = useState(false);
   const [filteredPageLike, setFilteredPageLike] = useState(false);
   const [isLike, setIsLike] = useState(false);
+  const [isCategory, setIsCategory] = useState(false);
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -22,6 +23,18 @@ function Provider({ children }) {
     end: 8,
     count: 1
   });
+  const filteredCategory = JSON.parse(localStorage.getItem("listCategoryMusic"));
+
+  function matrixToList(matrix) {
+    const list = [];
+    matrix.forEach((item) => {
+      item.forEach((i) => {
+        list.push(i);
+      })
+    })
+
+    return list;
+  }
 
   const playBack = localStorage.getItem("playback");
   const storageLikeList = localStorage.getItem("listLike") || [];
@@ -109,6 +122,19 @@ function Provider({ children }) {
     }
   }, [callJump, clickedMusic, currentTime, isLike, likeMusic.length, musics.length, playBack, setClickedMusic, showPlay, totalTime]);
 
+  function returnListFiltered() {
+    const nowLike = showPlay === "list_like";
+    if (nowLike || isLike) {
+      return likeMusic[clickedMusic];
+    } else if (isCategory) {
+      return matrixToList(filteredCategory)[clickedMusic]
+    } else {
+      if (musics.length > 0) {
+        return musics[clickedMusic]
+      }
+    }
+  }
+
   const providerValue = {
     fetchMusics,
     musics,
@@ -135,7 +161,12 @@ function Provider({ children }) {
     likeMusic,
     setLikeMusic,
     paginationControl,
-    setPaginationControl
+    setPaginationControl,
+    filteredCategory,
+    returnListFiltered,
+    isCategory,
+    setIsCategory,
+    matrixToList
   }
 
   return (

@@ -18,6 +18,7 @@ function Menu() {
     storageLikeList,
     setLikeMusic,
     setClickedMusic,
+    setIsCategory
   } = useContext(MyContext);
 
   const listIcons = [
@@ -42,10 +43,13 @@ function Menu() {
   function handleHome() {
     setFilteredPageLike(false);
     setIsLike(false);
+    setIsCategory(false);
     setShowPlay("main_page");
   }
 
   function handleSearch() {
+    setFilteredPageLike(false);
+    setIsLike(false);
     setShowPlay("search_play");
   }
 

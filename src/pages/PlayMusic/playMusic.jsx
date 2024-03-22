@@ -8,14 +8,13 @@ import "./playMusic.css";
 function PlayMusic() {
 
   const {
-    clickedMusic,
     musics,
     currentTime,
     totalTime,
     showPlay,
     handleInputValue,
     isLike,
-    likeMusic
+    returnListFiltered
   } = useContext(MyContext);
 
   function formatterTime(time_seconds) {
@@ -52,7 +51,7 @@ function PlayMusic() {
         musics.length > 0 ?
           <Play
             returnIcon={returnIcon}
-            clickedMusic={showPlay === "list_like" || isLike ? likeMusic[clickedMusic] : musics[clickedMusic]}
+            clickedMusic={returnListFiltered()}
             showTimeMusic={showTimeMusic}
             isLike={isLike}
           />
