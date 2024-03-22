@@ -6,6 +6,17 @@
   background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
 }
 
+#category_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13pt;
+  margin: 5px;
+  margin-left: 10px;
+  width: 25%;
+  padding: 5px 0px;
+}
+
 .layout_category section {
   display: flex;
   flex-direction: row;

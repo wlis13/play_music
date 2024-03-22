@@ -30,12 +30,16 @@ function Start() {
   const playBack = localStorage.getItem("playback");
   const audio = document.getElementById("audio");
 
-  const verifyLikeStorage = showPlay === "list_like" || isLike && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id);
-
-  const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
+  function verifyLike() {
+    if (isLike && likeMusic.length > 0) {
+      return storageLikeList.includes(likeMusic[clickedMusic]._id);
+    } else if (musics.length > 0) {
+      return storageLikeList.includes(musics[clickedMusic]._id);
+    }
+  }
 
   const listIcons = [
-    { name: "handleLike", default: verifyLikeStorage || verifyLike ? like : notLike },
+    { name: "handleLike", default: verifyLike() ? like : notLike },
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
@@ -102,7 +106,7 @@ function Start() {
         setClickedMusic(clickedMusic - 1);
         audio.play();
       } else {
-        if (showPlay === "list_like" || isLike) {
+        if (isLike) {
           setClickedMusic(likeMusic.length - 1);
           audio.play();
         } else if (isCategory) {

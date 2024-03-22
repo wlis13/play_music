@@ -108,7 +108,7 @@ function Provider({ children }) {
             }
             setCallJump(callJump + 1);
             if (callJump % 2 !== 0) {
-              if (showPlay === "list_like" || isLike) {
+              if (isLike) {
                 continuePlay(likeMusic, audio);
               } else if (isCategory) {
                 continuePlay(matrixToList(filteredCategory), audio);

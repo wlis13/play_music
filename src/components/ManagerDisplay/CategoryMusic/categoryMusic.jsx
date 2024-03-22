@@ -5,6 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Hammer from "hammerjs";
 import MyContext from "../../../context/context";
 import "./categoryMusic.css";
+import Header from "../../Header/header";
 
 function CategoryMusic() {
 
@@ -53,6 +54,7 @@ function CategoryMusic() {
       ref={carouselRef}
       className="layout_like_page"
     >
+      <Header />
       <Carousel
         controls={false}
         interval={null}
@@ -64,7 +66,7 @@ function CategoryMusic() {
               <div
                 className="container_list_category"
               >
-                <h1>category music</h1>
+                <h1 id="category_title">{music[0].category}</h1>
                 {
                   music.map((ms) => (
                     <section
