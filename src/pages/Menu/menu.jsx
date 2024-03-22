@@ -51,7 +51,6 @@ function Menu() {
   function handleSearch() {
     setFilteredPageLike(false);
     setIsLike(false);
-    setIsCategory(true);
     setShowPlay("search_play");
   }
 

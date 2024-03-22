@@ -6,7 +6,7 @@ import MyContext from "../../context/context";
 
 function SearchPage() {
 
-  const { musics, setIsCategory, setIsLike, setShowPlay } = useContext(MyContext);
+  const { musics, setIsLike, setShowPlay } = useContext(MyContext);
 
   const listCategories = [
     { name: "anos 80", className: "anos_80" },
@@ -28,9 +28,6 @@ function SearchPage() {
   }
 
   function handleCategories(category) {
-    setShowPlay("category_music")
-    setIsCategory(true);
-    setIsLike(false);
     const filteredByCategory = musics
       .filter((item) => item.category === category);
     let list = [];
@@ -70,6 +67,8 @@ function SearchPage() {
               key={category.name}
               onClick={() => {
                 handleCategories(category.name);
+                setShowPlay("category_music");
+                setIsLike(false);
               }}
             >
               <h2>{category.name}</h2>

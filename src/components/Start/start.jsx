@@ -164,10 +164,16 @@ function Start() {
   animationTitle();
 
   function returnTitle() {
-    if (showPlay === "list_like" || isLike) {
+    if (isLike) {
       if (likeMusic.length > 0) {
         return (
           likeMusic[clickedMusic].title
+        )
+      }
+    } else if (isCategory) {
+      if (matrixToList(filteredCategory).length > 0) {
+        return (
+          matrixToList(filteredCategory)[clickedMusic].title
         )
       }
     } else {
