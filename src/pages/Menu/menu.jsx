@@ -37,6 +37,7 @@ function Menu() {
     }
     setFilteredPageLike(true);
     setIsLike(true);
+    setIsCategory(false);
     setShowPlay("list_like");
   }
 
@@ -50,6 +51,7 @@ function Menu() {
   function handleSearch() {
     setFilteredPageLike(false);
     setIsLike(false);
+    setIsCategory(true);
     setShowPlay("search_play");
   }
 

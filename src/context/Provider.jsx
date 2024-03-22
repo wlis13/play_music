@@ -82,11 +82,22 @@ function Provider({ children }) {
     audioRef.current.currentTime = value;
   }
 
+
   useEffect(() => {
     fetchMusics()
   }, [])
 
   useEffect(() => {
+    function continuePlay(list, audio) {
+      if (clickedMusic < list.length - 1) {
+        setClickedMusic(clickedMusic + 1);
+        audio.load() && audio.play();
+      } else {
+        setClickedMusic(0)
+        audio.load() && audio.play();
+      }
+    }
+
     const audio = document.getElementById("audio");
     if (audio) {
       if (playBack === "true") {
@@ -98,29 +109,18 @@ function Provider({ children }) {
             setCallJump(callJump + 1);
             if (callJump % 2 !== 0) {
               if (showPlay === "list_like" || isLike) {
-                if (clickedMusic < likeMusic.length - 1) {
-                  setClickedMusic(clickedMusic + 1);
-                  audio.load() && audio.play();
-
-                } else {
-                  setClickedMusic(0)
-                  audio.load() && audio.play();
-                }
+                continuePlay(likeMusic, audio);
+              } else if (isCategory) {
+                continuePlay(matrixToList(filteredCategory), audio);
               } else {
-                if (clickedMusic < musics.length - 1) {
-                  setClickedMusic(clickedMusic + 1);
-                  audio.load() && audio.play();
-                } else {
-                  setClickedMusic(0)
-                  audio.load() && audio.play();
-                }
+                continuePlay(musics, audio);
               }
             }
           }
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, isLike, likeMusic.length, musics.length, playBack, setClickedMusic, showPlay, totalTime]);
+  }, [callJump, clickedMusic, currentTime, filteredCategory, isCategory, isLike, likeMusic, likeMusic.length, musics, musics.length, playBack, setClickedMusic, showPlay, totalTime]);
 
   function returnListFiltered() {
     const nowLike = showPlay === "list_like";
