@@ -1,5 +1,6 @@
 .container_manager_header {
   background-color: rgb(71, 71, 71);
+  border: 1px solid red;
 }
 
 .container_manager_header img {
