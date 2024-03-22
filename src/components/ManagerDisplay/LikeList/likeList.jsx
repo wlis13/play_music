@@ -44,6 +44,7 @@ function LikeList() {
     })
 
     newMatrix.push(newList);
+
     return newMatrix;
   }
 
@@ -75,8 +76,8 @@ function LikeList() {
         indicators={false}
       >
         {
-          returnFormattedMatrix().map((music) => (
-            <Carousel.Item key={music.title}>
+          returnFormattedMatrix().map((music, index) => (
+            <Carousel.Item key={index}>
               <div
                 className="container_list_musics"
               >

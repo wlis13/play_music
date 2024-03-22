@@ -27,7 +27,7 @@ function Start() {
   const playBack = localStorage.getItem("playback");
   const audio = document.getElementById("audio");
 
-  const verifyLikeStorage = showPlay === "list_like" || isLike && musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id);
+  const verifyLikeStorage = showPlay === "list_like" || isLike && likeMusic.length > 0 && storageLikeList.includes(likeMusic[clickedMusic]._id);
 
   const verifyLike = musics.length > 0 && storageLikeList.includes(musics[clickedMusic]._id)
 
