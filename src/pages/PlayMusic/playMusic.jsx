@@ -48,9 +48,8 @@ function PlayMusic() {
   useEffect(() => {
     const inputRange = document.getElementById("input_range");
     const percentValue = (currentTime / totalTime) * 100;
-    const rangeWidth = inputRange.offsetWidth;
-    const thumbWidth = inputRange.offsetHeight;
-    const thumbOffset = (percentValue / 100) * (rangeWidth - thumbWidth);
+    const rangeWidth = inputRange.getBoundingClientRect().width;
+    const thumbOffset = (percentValue / 100) * rangeWidth;
 
     inputRange.style.setProperty('--length-range', `${thumbOffset}px`);
   }, [currentTime, totalTime])
