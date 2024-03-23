@@ -66,7 +66,7 @@ function CategoryMusic() {
               <div
                 className="container_list_category"
               >
-                <h1 id="category_title">{music.length > 0 ? music[0].category : "Desculpe my friend, ainda não temos musicas nessa categoria."}</h1>
+                <h1 id="category_title">{music.length > 0 ? music[0].category : "<-----"}</h1>
                 {
                   music.map((ms) => (
                     <section

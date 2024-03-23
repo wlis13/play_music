@@ -30,17 +30,18 @@ function SearchPage() {
   function handleCategories(category) {
     const filteredByCategory = musics
       .filter((item) => item.category === category);
+
     let list = [];
     const matrix = [];
     filteredByCategory.forEach((item) => {
-      if (list.length <= 6) {
+      if (list.length < 6) {
         list.push(item)
       } else {
         matrix.push(list);
         list = [];
       }
     });
-    if (list.length <= 6) {
+    if (list.length < 6) {
       matrix.push(list)
     }
 
