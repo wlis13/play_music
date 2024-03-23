@@ -52,7 +52,7 @@ function CategoryMusic() {
   return (
     <div
       ref={carouselRef}
-      className="layout_like_page"
+      className="layout_category"
     >
       <Header />
       <Carousel
