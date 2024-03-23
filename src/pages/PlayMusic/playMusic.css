@@ -83,7 +83,7 @@
   top: -6px;
   width: 70%;
   appearance: none;
-
+  background-color: rgb(255, 175, 2, 0);
 }
 
 #input_range::-webkit-slider-runnable-track {
