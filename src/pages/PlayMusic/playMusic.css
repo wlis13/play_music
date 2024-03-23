@@ -78,9 +78,12 @@
   width: 80%;
 }
 
+.container_time_music p {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 #input_range {
-  position: relative;
-  top: -6px;
   width: 70%;
   appearance: none;
   background-color: rgb(255, 175, 2, 0);
