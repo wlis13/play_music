@@ -1,5 +1,5 @@
 import returnIcon from "./image/arrow_for_down_white.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import MyContext from "../../context/context";
 import ShowLoad from "../../components/ShowLoad/showLoad";
 import Play from "./Play";
@@ -44,6 +44,16 @@ function PlayMusic() {
       </div>
     )
   }
+
+  useEffect(() => {
+    const inputRange = document.getElementById("input_range");
+    const percentValue = (currentTime / totalTime) * 100;
+    const rangeWidth = inputRange.offsetWidth;
+    const thumbWidth = inputRange.offsetHeight;
+    const thumbOffset = (percentValue / 100) * (rangeWidth - thumbWidth);
+
+    inputRange.style.setProperty('--length-range', `${thumbOffset}px`);
+  }, [currentTime, totalTime])
 
   return (
     <div className={`container_manager_play_music ${showPlay !== "reproduction" ? "not_show" : ""}`}>
