@@ -5,12 +5,9 @@ import ListMusics from "./listMusic";
 import ListLike from "../ListLike/listLike";
 import SearchPage from "../../pages/SearchPage/searchPage";
 import "./managerShowPage.css";
-import ShowLoad from "../ShowLoad/showLoad";
 import CategoryMusic from "./CategoryMusic/categoryMusic";
 
 function ManagerShowPage() {
-
-  const { musics } = useContext(MyContext);
 
   const {
     showPlay,
@@ -45,10 +42,7 @@ function ManagerShowPage() {
   return (
     <div>
       {
-        musics.length > 0 ?
-          handleDisplay()
-          :
-          <ShowLoad />
+        handleDisplay()
       }
     </div>
 

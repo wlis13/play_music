@@ -5,6 +5,7 @@ import { useContext } from "react";
 import MyContext from "../../context/context";
 import Menu from "../Menu/menu";
 import "./mainPage.css";
+import ShowLoad from "../../components/ShowLoad/showLoad";
 
 function MainPage() {
 
@@ -12,22 +13,29 @@ function MainPage() {
     audioRef,
     isPlay,
     handleAudioValue,
-    returnListFiltered
+    returnListFiltered,
+    musics
   } = useContext(MyContext);
 
   return (
     <div className="container_manager_main_page">
-      <div className="container_show_page_and_start">
-        <ManagerShowPage />
-        <Start />
-      </div>
-      <Menu />
-      <Audio
-        audioRef={audioRef}
-        isPlay={isPlay}
-        clickedMusic={returnListFiltered()}
-        handleAudioValue={handleAudioValue}
-      />
+      {
+        musics.length > 0 ?
+          <div>
+            <div className="container_show_page_and_start">
+              <ManagerShowPage />
+              <Start />
+            </div>
+            <Menu />
+            <Audio
+              audioRef={audioRef}
+              isPlay={isPlay}
+              clickedMusic={returnListFiltered()}
+              handleAudioValue={handleAudioValue}
+            />
+          </div>
+          : <ShowLoad />
+      }
     </div>
   );
 }
