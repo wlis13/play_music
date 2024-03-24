@@ -37,7 +37,7 @@ function Provider({ children }) {
   }
 
   const playBack = localStorage.getItem("playback");
-  const storageLikeList = localStorage.getItem("listLike") || [];
+  const storageLikeList = JSON.parse(localStorage.getItem("listLike")) || [];
 
   async function fetchMusics() {
     const url = "https://playmusicservice.vercel.app/all_musics";

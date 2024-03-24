@@ -7,7 +7,7 @@ import play from "./images/pause.png";
 import playback from "./images/playback_thirth.png";
 import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/context";
 
 function Start() {
@@ -19,7 +19,6 @@ function Start() {
     setIsPlay,
     setClickedMusic,
     showPlay,
-    storageLikeList,
     likeMusic,
     isLike,
     matrixToList,
@@ -29,17 +28,10 @@ function Start() {
 
   const playBack = localStorage.getItem("playback");
   const audio = document.getElementById("audio");
-
-  function verifyLike() {
-    if (isLike && likeMusic.length > 0) {
-      return storageLikeList.includes(likeMusic[clickedMusic]._id);
-    } else if (musics.length > 0) {
-      return storageLikeList.includes(musics[clickedMusic]._id);
-    }
-  }
+  const [addLike, setAddLike] = useState();
 
   const listIcons = [
-    { name: "handleLike", default: verifyLike() ? like : notLike },
+    { name: "handleLike", default: addLike ? like : notLike },
     { name: "prev", default: prev },
     { name: "playEndpause", default: isPlay ? play : pause },
     { name: "next", default: next },
@@ -120,18 +112,27 @@ function Start() {
     }
   }
 
-  function handleUpdateLike() {
-    let list = JSON.parse(localStorage.getItem("listLike")) || [];
-    const ID = musics[clickedMusic]._id;
-
+  function addOrRemoveLike(ID) {
+    let list = JSON.parse(localStorage.getItem("listLike"));
     if (!list.includes(ID)) {
       list.push(ID);
-      localStorage.setItem("listLike", JSON.stringify(list));
     } else {
       list = list.filter(id => id !== ID);
-      localStorage.setItem("listLike", JSON.stringify(list));
+    }
+    localStorage.setItem("listLike", JSON.stringify(list));
+    return list;
+  }
+
+  function handleUpdateLike() {
+    if (isLike) {
+      const IDLike = likeMusic[clickedMusic]._id;
+      addOrRemoveLike(IDLike);
+    } else {
+      const ID = musics[clickedMusic]._id;
+      addOrRemoveLike(ID);
     }
   }
+
 
   function initPlayBack() {
     const newPlayBack = playBack === "true" ? false : true
@@ -184,6 +185,15 @@ function Start() {
       }
     }
   }
+
+  useEffect(() => {
+    let list = JSON.parse(localStorage.getItem("listLike"));
+    if (isLike && likeMusic.length > 0) {
+      setAddLike(list.includes(likeMusic[clickedMusic]._id));
+    } else if (musics.length > 0) {
+      setAddLike(list.includes(musics[clickedMusic]._id));
+    }
+  }, [clickedMusic, isLike, likeMusic, musics])
 
   return (
     <div className="menu_play_main_page">
