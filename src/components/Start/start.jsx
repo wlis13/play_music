@@ -124,13 +124,23 @@ function Start() {
   }
 
   function handleUpdateLike() {
+    let newList = [];
     if (isLike) {
       const IDLike = likeMusic[clickedMusic]._id;
-      addOrRemoveLike(IDLike);
+      newList = addOrRemoveLike(IDLike);
+      setAddLike(newList.includes(likeMusic[clickedMusic]._id));
+
+    } else if (isCategory) {
+      const IDCategory = matrixToList(filteredCategory)[clickedMusic]._id;
+      newList = addOrRemoveLike(IDCategory);
+      setAddLike(newList.includes(matrixToList(filteredCategory)[clickedMusic]._id));
+
     } else {
       const ID = musics[clickedMusic]._id;
-      addOrRemoveLike(ID);
+      newList = addOrRemoveLike(ID);
+      setAddLike(newList.includes(musics[clickedMusic]._id));
     }
+
   }
 
 
@@ -187,13 +197,16 @@ function Start() {
   }
 
   useEffect(() => {
-    let list = JSON.parse(localStorage.getItem("listLike"));
-    if (isLike && likeMusic.length > 0) {
-      setAddLike(list.includes(likeMusic[clickedMusic]._id));
-    } else if (musics.length > 0) {
-      setAddLike(list.includes(musics[clickedMusic]._id));
+    const list = JSON.parse(localStorage.getItem("listLike"));
+    if (isLike) {
+      likeMusic.length > 0 && setAddLike(list.includes(likeMusic[clickedMusic]._id));
+    } else if (isCategory) {
+      matrixToList(filteredCategory).length > 0 && setAddLike(list
+        .includes(matrixToList(filteredCategory)[clickedMusic]._id));
+    } else {
+      musics.lenght > 0 && setAddLike(list.includes(musics[clickedMusic]._id));
     }
-  }, [clickedMusic, isLike, likeMusic, musics])
+  }, [clickedMusic, filteredCategory, isCategory, isLike, likeMusic, matrixToList, musics])
 
   return (
     <div className="menu_play_main_page">
