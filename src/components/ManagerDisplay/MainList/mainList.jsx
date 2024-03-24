@@ -1,8 +1,7 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
-import Hammer from "hammerjs";
 import MyContext from "../../../context/context";
 import "./mainList.css";
 
@@ -27,22 +26,11 @@ function MainList() {
     audio.paused && audio.play();
   }
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    const hammer = new Hammer(carousel);
+  const [index, setIndex] = useState(0);
 
-    hammer.on("swipeleft", () => {
-      carousel.dispatchEvent(new Event("slideNext"));
-    })
-
-    hammer.on("swiperight", () => {
-      carousel.dispatchEvent(new Event("slicePrev"));
-    })
-
-    return () => {
-      hammer.destroy();
-    }
-  }, [])
+  function handleSelect(selectedIndex) {
+    setIndex(selectedIndex);
+  }
 
   return (
     <div
@@ -53,6 +41,11 @@ function MainList() {
         controls={false}
         interval={null}
         indicators={false}
+        pause={false}
+        activeIndex={index}
+        onSelect={handleSelect}
+        touch={true}
+        wrap={true}
       >
         {
           matrixMusic.map((music) => (
