@@ -23,6 +23,7 @@ function Provider({ children }) {
     end: 8,
     count: 1
   });
+  const [addLike, setAddLike] = useState();
   const filteredCategory = JSON.parse(localStorage.getItem("listCategoryMusic"));
 
   function matrixToList(matrix) {
@@ -32,7 +33,6 @@ function Provider({ children }) {
         list.push(i);
       })
     })
-
     return list;
   }
 
@@ -135,6 +135,27 @@ function Provider({ children }) {
     }
   }
 
+  useEffect(() => {
+    function matrixToListSecond(matrix) {
+      const list = [];
+      matrix.forEach((item) => {
+        item.forEach((i) => {
+          list.push(i);
+        })
+      })
+      return list;
+    }
+    const list = JSON.parse(localStorage.getItem("listLike"));
+    if (isLike) {
+      likeMusic.length > 0 && setAddLike(list.includes(likeMusic[clickedMusic]._id));
+    } else if (isCategory) {
+      matrixToListSecond(filteredCategory).length > 0 && setAddLike(list
+        .includes(matrixToListSecond(filteredCategory)[clickedMusic]._id));
+    } else {
+      musics.length > 0 && setAddLike(list.includes(musics[clickedMusic]._id));
+    }
+  }, [clickedMusic, filteredCategory, isCategory, isLike, likeMusic, musics])
+
   const providerValue = {
     fetchMusics,
     musics,
@@ -166,7 +187,9 @@ function Provider({ children }) {
     returnListFiltered,
     isCategory,
     setIsCategory,
-    matrixToList
+    matrixToList,
+    addLike,
+    setAddLike
   }
 
   return (

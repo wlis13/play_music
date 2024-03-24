@@ -7,7 +7,7 @@ import play from "./images/pause.png";
 import playback from "./images/playback_thirth.png";
 import playbackInit from "./images/playback_thirth_greem.png";
 import "./start.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import MyContext from "../../context/context";
 
 function Start() {
@@ -23,12 +23,13 @@ function Start() {
     isLike,
     matrixToList,
     filteredCategory,
-    isCategory
+    isCategory,
+    addLike,
+    setAddLike
   } = useContext(MyContext);
 
   const playBack = localStorage.getItem("playback");
   const audio = document.getElementById("audio");
-  const [addLike, setAddLike] = useState();
 
   const listIcons = [
     { name: "handleLike", default: addLike ? like : notLike },
@@ -195,18 +196,6 @@ function Start() {
       }
     }
   }
-
-  useEffect(() => {
-    const list = JSON.parse(localStorage.getItem("listLike"));
-    if (isLike) {
-      likeMusic.length > 0 && setAddLike(list.includes(likeMusic[clickedMusic]._id));
-    } else if (isCategory) {
-      matrixToList(filteredCategory).length > 0 && setAddLike(list
-        .includes(matrixToList(filteredCategory)[clickedMusic]._id));
-    } else {
-      musics.lenght > 0 && setAddLike(list.includes(musics[clickedMusic]._id));
-    }
-  }, [clickedMusic, filteredCategory, isCategory, isLike, likeMusic, matrixToList, musics])
 
   return (
     <div className="menu_play_main_page">
