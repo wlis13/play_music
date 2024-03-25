@@ -136,6 +136,9 @@ function Provider({ children }) {
   }
 
   useEffect(() => {
+    if (clickedMusic < 0) {
+      setClickedMusic(0);
+    }
     function matrixToListSecond(matrix) {
       const list = [];
       matrix.forEach((item) => {

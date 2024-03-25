@@ -48,8 +48,8 @@ function MainList() {
         wrap={true}
       >
         {
-          matrixMusic.map((music) => (
-            <Carousel.Item key={music.title}>
+          matrixMusic.map((music, index) => (
+            <Carousel.Item key={index}>
               <div
                 className="container_list_musics"
               >
