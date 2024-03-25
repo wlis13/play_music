@@ -88,7 +88,9 @@ function Provider({ children }) {
   }, [])
 
   useEffect(() => {
-    function continuePlay(list, audio) {
+    const audio = document.getElementById("audio");
+
+    function continuePlay(list) {
       if (clickedMusic < list.length - 1) {
         setClickedMusic(clickedMusic + 1);
         audio.load() && audio.play();
@@ -98,7 +100,6 @@ function Provider({ children }) {
       }
     }
 
-    const audio = document.getElementById("audio");
     if (audio) {
       if (playBack === "true") {
         if (totalTime > 0) {
@@ -109,11 +110,11 @@ function Provider({ children }) {
             setCallJump(callJump + 1);
             if (callJump % 2 !== 0) {
               if (isLike) {
-                continuePlay(likeMusic, audio);
+                continuePlay(likeMusic);
               } else if (isCategory) {
-                continuePlay(matrixToList(filteredCategory), audio);
+                continuePlay(matrixToList(filteredCategory));
               } else {
-                continuePlay(musics, audio);
+                continuePlay(musics);
               }
             }
           }
