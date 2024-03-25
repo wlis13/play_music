@@ -36,7 +36,6 @@ function Provider({ children }) {
     return list;
   }
 
-  const playBack = localStorage.getItem("playback");
   const storageLikeList = JSON.parse(localStorage.getItem("listLike")) || [];
 
   async function fetchMusics() {
@@ -101,27 +100,25 @@ function Provider({ children }) {
     }
 
     if (audio) {
-      if (playBack === "true") {
-        if (totalTime > 0) {
-          if (currentTime === totalTime) {
-            if (callJump === 1000) {
-              setCallJump(1);
-            }
-            setCallJump(callJump + 1);
-            if (callJump % 2 !== 0) {
-              if (isLike) {
-                continuePlay(likeMusic);
-              } else if (isCategory) {
-                continuePlay(matrixToList(filteredCategory));
-              } else {
-                continuePlay(musics);
-              }
+      if (totalTime > 0) {
+        if (currentTime === totalTime) {
+          if (callJump === 1000) {
+            setCallJump(1);
+          }
+          setCallJump(callJump + 1);
+          if (callJump % 2 !== 0) {
+            if (isLike) {
+              continuePlay(likeMusic);
+            } else if (isCategory) {
+              continuePlay(matrixToList(filteredCategory));
+            } else {
+              continuePlay(musics);
             }
           }
         }
       }
     }
-  }, [callJump, clickedMusic, currentTime, filteredCategory, isCategory, isLike, likeMusic, likeMusic.length, musics, musics.length, playBack, setClickedMusic, showPlay, totalTime]);
+  }, [callJump, clickedMusic, currentTime, filteredCategory, isCategory, isLike, likeMusic, likeMusic.length, musics, musics.length, setClickedMusic, showPlay, totalTime]);
 
   function returnListFiltered() {
     const nowLike = showPlay === "list_like";
