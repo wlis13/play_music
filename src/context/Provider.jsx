@@ -145,7 +145,7 @@ function Provider({ children }) {
       })
       return list;
     }
-    const list = JSON.parse(localStorage.getItem("listLike"));
+    const list = JSON.parse(localStorage.getItem("listLike")) || [];
     if (isLike) {
       likeMusic.length > 0 && setAddLike(list.includes(likeMusic[clickedMusic]._id));
     } else if (isCategory) {
