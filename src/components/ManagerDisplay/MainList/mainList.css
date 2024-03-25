@@ -58,3 +58,9 @@
 .title_and_category h3 {
   font-size: 10pt;
 }
+
+@media (min-height:750px) {
+  .container_manager_list_music {
+    height: 630px;
+  }
+}

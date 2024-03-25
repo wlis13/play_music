@@ -49,3 +49,9 @@
   font-weight: 300;
   margin-left: 30px;
 }
+
+@media (min-height:750px) {
+  .layout_like_page {
+    height: 600px;
+  }
+}

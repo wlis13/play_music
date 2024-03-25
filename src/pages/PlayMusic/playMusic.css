@@ -109,3 +109,9 @@
   box-shadow: -412px 0 2px 412px #a8e9cb;
   border-radius: 5px;
 }
+
+@media (min-height:750px) {
+  .container_manager_play_music {
+    height: 620px;
+  }
+}
