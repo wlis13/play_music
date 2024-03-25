@@ -15,7 +15,8 @@ function CategoryMusic() {
     setIsPlay,
     filteredCategory,
     setIsLike,
-    setIsCategory
+    setIsCategory,
+    matrixToList
   } = useContext(MyContext);
 
   const carouselRef = useRef(null);
@@ -24,9 +25,8 @@ function CategoryMusic() {
     setIsLike(false);
     setIsCategory(true);
     setIsPlay(true);
-    filteredCategory.forEach((item) => {
-      setClickedMusic(item.findIndex((music) => music._id === id));
-    })
+    filteredCategory
+    setClickedMusic(matrixToList(filteredCategory).findIndex((music) => music._id === id));
     setShowPlay("reproduction");
     const audio = document.getElementById("audio");
     audio.load() && audio.play();
