@@ -1,8 +1,7 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
-import Hammer from "hammerjs";
 import MyContext from "../../../context/context";
 import "./likeList.css";
 
@@ -52,23 +51,6 @@ function LikeList() {
     return newMatrix;
   }
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    const hammer = new Hammer(carousel);
-
-    hammer.on("swipeleft", () => {
-      carousel.dispatchEvent(new Event("slideNext"));
-    })
-
-    hammer.on("swiperight", () => {
-      carousel.dispatchEvent(new Event("slicePrev"));
-    })
-
-    return () => {
-      hammer.destroy();
-    }
-  }, [])
-
   return (
     <div
       ref={carouselRef}
@@ -78,6 +60,7 @@ function LikeList() {
         controls={false}
         interval={null}
         indicators={false}
+        touch={true}
       >
         {
           returnFormattedMatrix().map((music, index) => (
