@@ -59,3 +59,9 @@
   font-weight: 300;
   margin-left: 30px;
 }
+
+@media (min-height:750px) {
+  .layout_category {
+    min-height: 620px;
+  }
+}
