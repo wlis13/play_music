@@ -60,8 +60,8 @@
   margin-left: 30px;
 }
 
-@media (min-height:750px) {
+@media (min-height:720px) {
   .layout_category {
-    min-height: 620px;
+    min-height: 650px;
   }
 }
