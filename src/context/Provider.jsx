@@ -49,10 +49,9 @@ function Provider({ children }) {
     const response = await promise.json();
     setTimeout(() => {
       const groups = [];
-      for (let index = 0; index < response.length; index += 4) {
-        groups.push(response.slice(index, index + 4))
+      for (let index = 0; index < response.length; index += 3) {
+        groups.push(response.slice(index, index + 3))
       }
-      console.log(groups)
       setMatrixMusic(groups)
       setMusics(response);
     }, 2000);
