@@ -4,10 +4,11 @@
   justify-content: space-around;
   background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
   width: 100%;
-  height: 600px;
+  height: 200px;
   margin-top: 60px;
   bottom: 60px;
   padding-top: 10px;
+  overflow-y: hidden;
 }
 
 .container_list_musics {
@@ -15,6 +16,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
+  height: 100%;
 }
 
 .not_showing_list_music {
@@ -32,8 +34,8 @@
 
 .image_music {
   position: relative;
-  width: 80%;
-  height: 120px;
+  width: 60%;
+  height: 80px;
   margin-top: 0px;
   margin-bottom: 10px;
 }

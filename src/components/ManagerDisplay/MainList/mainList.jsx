@@ -16,8 +16,6 @@ function MainList() {
     matrixMusic
   } = useContext(MyContext);
 
-  const carouselRef = useRef(null);
-
   function handleRoute(id) {
     setIsPlay(true);
     setClickedMusic(musics.findIndex((music) => music._id === id));
@@ -34,30 +32,19 @@ function MainList() {
 
   return (
     <div
-      ref={carouselRef}
       className="container_manager_list_music"
     >
-      <Carousel
-        controls={false}
-        interval={null}
-        indicators={false}
-        pause={false}
-        activeIndex={index}
-        onSelect={handleSelect}
-        touch={true}
-        wrap={true}
-      >
         {
           matrixMusic.map((music, index) => (
-            <Carousel.Item key={index}>
               <div
                 className="container_list_musics"
+                key={index}
               >
                 {
                   music.map((ms) => (
                     <section
                       onClick={() => { handleRoute(ms._id) }}
-                      key={ms.title}
+                      key={ms._id}
                     >
                       <div
                         style={{
@@ -80,10 +67,8 @@ function MainList() {
                   ))
                 }
               </div>
-            </Carousel.Item>
           ))
         }
-      </Carousel>
     </div>
   );
 }
