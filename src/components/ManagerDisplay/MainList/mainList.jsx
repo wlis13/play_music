@@ -1,7 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
-import Carousel from "react-bootstrap/Carousel";
 import MyContext from "../../../context/context";
 import "./mainList.css";
 
