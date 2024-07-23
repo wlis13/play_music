@@ -24,12 +24,6 @@ function MainList() {
     audio.paused && audio.play();
   }
 
-  const [index, setIndex] = useState(0);
-
-  function handleSelect(selectedIndex) {
-    setIndex(selectedIndex);
-  }
-
   return (
     <div
       className="container_manager_list_music"
