@@ -4,7 +4,7 @@
   justify-content: space-around;
   background-image: linear-gradient(rgb(102, 102, 102), rgb(53, 53, 53));
   width: 100%;
-  height: 585px;
+  height: 100%;
   margin-top: 60px;
   bottom: 60px;
   padding-top: 10px;
@@ -12,24 +12,22 @@
 }
 
 .container_list_musics {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
 
-.not_showing_list_music {
-  display: none;
-}
-
-.container_manager_list_music section {
+.container_section_musics {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 160px;
+  height: 35%;
   text-align: center;
+}
+
+.not_showing_list_music {
+  display: none;
 }
 
 .image_music {

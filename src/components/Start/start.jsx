@@ -114,7 +114,8 @@ function Start() {
   }
 
   function addOrRemoveLike(ID) {
-    let list = JSON.parse(localStorage.getItem("listLike"));
+    let list = JSON.parse(localStorage.getItem("listLike")) || [];
+    console.log(list)
     if (!list.includes(ID)) {
       list.push(ID);
     } else {

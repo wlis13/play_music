@@ -39,6 +39,7 @@ function MainList() {
                     <section
                       onClick={() => { handleRoute(ms._id) }}
                       key={ms._id}
+                      className="container_section_musics"
                     >
                       <div
                         style={{
