@@ -15,7 +15,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.3"
+    "react-router-dom": "^5.3.3",
+    "zsh": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",
