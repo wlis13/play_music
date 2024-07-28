@@ -35,14 +35,14 @@ function LikeList() {
       list.forEach((element) => {
         if (storageLikeList.includes(element._id)) {
           newList.push(element);
-          if (newList.length === 6) {
+          if (newList.length === 3) {
             newMatrix.push(newList);
             newList = [];
           }
         }
       });
     })
-
+    
     newMatrix.push(newList);
 
     return newMatrix;
@@ -53,15 +53,16 @@ function LikeList() {
       className="container_manager_list_like"
     >
         {
-          returnFormattedMatrix().map((music, index) => (
+          returnFormattedMatrix().map((music) => (
               <div
-                className="container_list_musics"
+                className="container_list_like"
               >
                 {
                   music.map((ms) => (
                     <section
                       onClick={() => { handleRoute(ms._id) }}
                       key={ms.title}
+                      className="container_section_like"
                     >
                       <div
                         style={{
