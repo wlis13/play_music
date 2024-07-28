@@ -1,7 +1,6 @@
 import { useContext, useRef } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
-import Carousel from "react-bootstrap/Carousel";
 import MyContext from "../../../context/context";
 import "./categoryMusic.css";
 import Header from "../../Header/header";
@@ -18,8 +17,6 @@ function CategoryMusic() {
     matrixToList
   } = useContext(MyContext);
 
-  const carouselRef = useRef(null);
-
   function handleRoute(id) {
     setIsLike(false);
     setIsCategory(true);
@@ -31,25 +28,27 @@ function CategoryMusic() {
     audio.load() && audio.play();
   }
 
+  function treeMusicsForColumn(matrix) {
+    let newlist = [];
+   matrix.forEach((item, index) => {
+    newlist.push(item.slice(index, index + 3))
+   })
+
+    return newlist;
+  }
+
   return (
     <div
-      ref={carouselRef}
-      className="layout_category"
+      className="container_manager_list_category"
     >
       <Header />
-      <Carousel
-        controls={false}
-        interval={null}
-        indicators={false}
-        touch={true}
-      >
         {
-          filteredCategory.map((music, index) => (
-            <Carousel.Item key={index}>
+          treeMusicsForColumn(filteredCategory).map((music, index) => (
               <div
                 className="container_list_category"
+                key={index}
               >
-                <h1 id="category_title">{music.length > 0 ? music[0].category : "<-----"}</h1>
+                {/* <h1 id="category_title">{music.length > 0 ? music[0].category : "<-----"}</h1> */}
                 {
                   music.map((ms) => (
                     <section
@@ -77,10 +76,8 @@ function CategoryMusic() {
                   ))
                 }
               </div>
-            </Carousel.Item>
           ))
         }
-      </Carousel>
     </div>
   );
 }
