@@ -1,7 +1,6 @@
 import { useContext, useRef } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
-import Carousel from "react-bootstrap/Carousel";
 import MyContext from "../../../context/context";
 import "./likeList.css";
 
@@ -17,8 +16,6 @@ function LikeList() {
     setIsLike,
     setIsCategory
   } = useContext(MyContext);
-
-  const carouselRef = useRef(null);
 
   function handleRoute(id) {
     setIsPlay(true);
@@ -53,18 +50,10 @@ function LikeList() {
 
   return (
     <div
-      ref={carouselRef}
-      className="layout_like_page"
+      className="container_manager_list_like"
     >
-      <Carousel
-        controls={false}
-        interval={null}
-        indicators={false}
-        touch={true}
-      >
         {
           returnFormattedMatrix().map((music, index) => (
-            <Carousel.Item key={index}>
               <div
                 className="container_list_musics"
               >
@@ -95,10 +84,8 @@ function LikeList() {
                   ))
                 }
               </div>
-            </Carousel.Item>
           ))
         }
-      </Carousel>
     </div>
   );
 }
