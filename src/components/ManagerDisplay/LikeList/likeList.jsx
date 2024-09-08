@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import iconFavicon from "../images/spotyfree_favidon.png";
 import "bootstrap/dist/css/bootstrap.css";
 import MyContext from "../../../context/context";
@@ -42,9 +42,8 @@ function LikeList() {
         }
       });
     })
-    
-    newMatrix.push(newList);
 
+    newMatrix.push(newList);
     return newMatrix;
   }
 
@@ -52,41 +51,42 @@ function LikeList() {
     <div
       className="container_manager_list_like"
     >
-        {
-          returnFormattedMatrix().map((music) => (
-              <div
-                className="container_list_like"
-              >
-                {
-                  music.map((ms) => (
-                    <section
-                      onClick={() => { handleRoute(ms._id) }}
-                      key={ms.title}
-                      className="container_section_like"
-                    >
-                      <div
-                        style={{
-                          backgroundImage: `url(${ms.image})`,
-                          backgroundSize: "100% 100%",
-                          backgroundRepeat: "no-repeat"
-                        }}
-                        className="image_music_like_page"
-                      >
-                        <img className="icon_aside_like_page"
-                          src={iconFavicon}
-                          alt="apotyfree"
-                        />
-                      </div>
-                      <aside className="title_and_category_like_page">
-                        <h2>{ms.title}</h2>
-                        <h3>{ms.category}</h3>
-                      </aside>
-                    </section>
-                  ))
-                }
-              </div>
-          ))
-        }
+      {
+        returnFormattedMatrix()[0].length > 0 ? returnFormattedMatrix().map((music, index) => (
+          <div
+            className="container_list_like"
+            key={index}
+          >
+            {
+              music.map((ms) => (
+                <section
+                  onClick={() => { handleRoute(ms._id) }}
+                  key={ms.title}
+                  className="container_section_like"
+                >
+                  <div
+                    style={{
+                      backgroundImage: `url(${ms.image})`,
+                      backgroundSize: "100% 100%",
+                      backgroundRepeat: "no-repeat"
+                    }}
+                    className="image_music_like_page"
+                  >
+                    <img className="icon_aside_like_page"
+                      src={iconFavicon}
+                      alt="apotyfree"
+                    />
+                  </div>
+                  <aside className="title_and_category_like_page">
+                    <h2>{ms.title}</h2>
+                    <h3>{ms.category}</h3>
+                  </aside>
+                </section>
+              ))
+            }
+          </div>
+        )) : <h1>Vocẽ ainda não tem músicas salvas como favoritas.</h1>
+      }
     </div>
   );
 }
